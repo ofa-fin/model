@@ -23,12 +23,12 @@ On high level, we want to provide the following set of data models:
 - Financial reporting (Income statement, balanace sheet etc.)
 
 All data models should be sufficient for Financial management in Finland with
-Finnish legistlatin. They should however, only provide the minimum needed data
+Finnish legislation. They should however, only provide the minimum needed data
 needed in normal usecases. Instead of providing data models for all edge cases,
 the data models should be extensible, so that derived models can be created for
 tools targeting the edge cases.
 
-Sponsors
+Founders
 ========
 
 The initiative was founded and is contributed by:
@@ -38,7 +38,7 @@ The initiative was founded and is contributed by:
 - Laskupiste (https://www.laskupiste.fi/)
 - Quartal Accounting Software Oy (https://quartal.com/)
 
-We are soon looking for new members in our team.
+We are soon looking for new members in our group.
 Please look at notices and call-for-actions in this space!
 
 
