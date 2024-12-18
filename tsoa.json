@@ -1,0 +1,25 @@
+{
+  "entryFile": "src/start-up/registerApi.ts",
+  "noImplicitAdditionalProperties": "silently-remove-extras",
+  "controllerPathGlobs": ["src/**/*Controller.ts"],
+  "spec": {
+    "outputDirectory": "./src/codegen",
+    "specVersion": 3,
+    "tags": [
+      {
+        "name": "About",
+        "description": "General information and metadata about the API. These methods are anonymous - do not require authentication."
+      }
+    ],
+    "securityDefinitions": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "routes": {
+    "routesDir": "./src/codegen",
+    "esm": true
+  }
+}

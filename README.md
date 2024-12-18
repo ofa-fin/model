@@ -41,6 +41,22 @@ The initiative was founded and is contributed by:
 We are soon looking for new members in our group.
 Please look at notices and call-for-actions in this space!
 
+Development
+===========
 
+Install node modules:
+```console
+foo@bar:~$ pnpm install
+```
+
+Build:
+```console
+foo@bar:~$ pnpm build
+```
+
+Run:
+```console
+foo@bar:~$ pnpm dev
+```
 
 

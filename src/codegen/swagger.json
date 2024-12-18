@@ -1,0 +1,374 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Address": {
+				"description": "Address document.",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Document id as GUID.\nRead-only. Will be generated after creation."
+					},
+					"createdAt": {
+						"type": "string",
+						"description": "Document creation time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"updatedAt": {
+						"type": "string",
+						"description": "Document update time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"street": {
+						"type": "string",
+						"description": "Street address."
+					},
+					"street2": {
+						"type": "string",
+						"description": "Street address line 2."
+					},
+					"postalCode": {
+						"type": "string",
+						"description": "Postal code."
+					},
+					"city": {
+						"type": "string",
+						"description": "City"
+					},
+					"countrySubdivision": {
+						"type": "string",
+						"description": "Country subdivision, like Pirkanmaa."
+					},
+					"countryCode": {
+						"type": "string",
+						"description": "Country as ISO 3166-1 alpha-2 code, like FI"
+					}
+				},
+				"required": [
+					"postalCode"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BankAccount": {
+				"description": "Bank account document.",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Document id as GUID.\nRead-only. Will be generated after creation."
+					},
+					"createdAt": {
+						"type": "string",
+						"description": "Document creation time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"updatedAt": {
+						"type": "string",
+						"description": "Document update time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"iban": {
+						"type": "string",
+						"description": "IBAN account number."
+					},
+					"bic": {
+						"type": "string",
+						"description": "BIC code."
+					},
+					"bankName": {
+						"type": "string",
+						"description": "Bank name."
+					},
+					"currency": {
+						"type": "string",
+						"description": "Currency as ISO 4217 code, like EUR."
+					},
+					"preferred": {
+						"type": "boolean",
+						"description": "Tells if current bank account is preferred one"
+					}
+				},
+				"required": [
+					"iban"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partner": {
+				"description": "Partner document.",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Document id as GUID.\nRead-only. Will be generated after creation."
+					},
+					"createdAt": {
+						"type": "string",
+						"description": "Document creation time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"updatedAt": {
+						"type": "string",
+						"description": "Document update time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"code": {
+						"type": "string",
+						"description": "Partner's code."
+					},
+					"name": {
+						"type": "string",
+						"description": "Partner's name."
+					},
+					"businessId": {
+						"type": "string",
+						"description": "Partner's business id."
+					},
+					"vatNumber": {
+						"type": "string",
+						"description": "Partner's vat number."
+					},
+					"email": {
+						"type": "string",
+						"description": "Partner's email."
+					},
+					"phone": {
+						"type": "string",
+						"description": "Partner's phone number."
+					},
+					"homepage": {
+						"type": "string",
+						"description": "Partner's homepage."
+					},
+					"language": {
+						"type": "string",
+						"description": "Partner's language as ISO 639-1 code, like fi"
+					},
+					"domicile": {
+						"type": "string",
+						"description": "Partner's domicile."
+					},
+					"country": {
+						"type": "string",
+						"description": "Partner's country as ISO 3166-1 alpha-2 code, like FI"
+					},
+					"address": {
+						"$ref": "#/components/schemas/Address",
+						"description": "Partner's address."
+					},
+					"deliveryAddress": {
+						"$ref": "#/components/schemas/Address",
+						"description": "Partner's delivery address."
+					},
+					"invoiceAddress": {
+						"$ref": "#/components/schemas/Address",
+						"description": "Partner's invoice address."
+					},
+					"einvoiceAddress": {
+						"description": "TODO"
+					},
+					"bankAccounts": {
+						"items": {
+							"$ref": "#/components/schemas/BankAccount"
+						},
+						"type": "array",
+						"description": "TODO: Do we need array?"
+					}
+				},
+				"required": [
+					"name",
+					"bankAccounts"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Document": {
+				"description": "Base class for document.",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Document id as GUID.\nRead-only. Will be generated after creation."
+					},
+					"createdAt": {
+						"type": "string",
+						"description": "Document creation time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"updatedAt": {
+						"type": "string",
+						"description": "Document update time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"type": {
+						"type": "string",
+						"description": "Document type."
+					},
+					"date": {
+						"type": "string",
+						"description": "Document date in ISO date format."
+					},
+					"title": {
+						"type": "string",
+						"description": "Document title."
+					},
+					"description": {
+						"type": "string",
+						"description": "Document description."
+					},
+					"status": {
+						"type": "string",
+						"description": "Document status. TODO: string -> object"
+					},
+					"partner": {
+						"$ref": "#/components/schemas/Partner"
+					},
+					"invoice": {
+						"description": "TODO here as property or own interface extending this document interface?"
+					},
+					"accounting": {
+						"description": "TODO add Accounting interface"
+					},
+					"transactions": {
+						"items": {},
+						"type": "array"
+					},
+					"entries": {
+						"items": {},
+						"type": "array"
+					},
+					"files": {
+						"items": {},
+						"type": "array"
+					},
+					"history": {
+						"items": {},
+						"type": "array"
+					}
+				},
+				"required": [
+					"type",
+					"date",
+					"title",
+					"description",
+					"status",
+					"partner",
+					"invoice",
+					"accounting",
+					"transactions",
+					"entries",
+					"files",
+					"history"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"BearerAuth": {
+				"type": "http",
+				"scheme": "bearer"
+			}
+		}
+	},
+	"info": {
+		"title": "ofa-fin-model",
+		"version": "1.0.0",
+		"description": "Model for Open Financial API (FIN)",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/api/v01/document/{id}": {
+			"get": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "The document if found.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Document"
+								}
+							}
+						}
+					}
+				},
+				"description": "Gets a document from storage based on its id.",
+				"tags": [
+					"Document"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Unique identifier for the document.",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v01/about/hello/{name}": {
+			"get": {
+				"operationId": "Hello",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"About"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "name",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v01/about/swagger/main": {
+			"get": {
+				"operationId": "Swagger",
+				"responses": {
+					"200": {
+						"description": "The the definition of the API as an Open API definition (swagger).",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Gets the main Open API specification for the API.",
+				"tags": [
+					"About"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	],
+	"tags": [
+		{
+			"name": "About",
+			"description": "General information and metadata about the API. These methods are anonymous - do not require authentication."
+		}
+	]
+}
