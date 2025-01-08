@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
-  "include": ["./src", "./src/**/*.json"],
+  "include": ["./src", "./src/**/*.json", "server-dev.ts"],
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",

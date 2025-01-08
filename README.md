@@ -44,19 +44,24 @@ Please look at notices and call-for-actions in this space!
 Development
 ===========
 
+Install TypeSpec globally if not installed
+```console
+foo@bar:~$ npm install -g @typespec/compiler
+```
+
 Install node modules:
 ```console
-foo@bar:~$ pnpm install
+foo@bar:~$ tsp install
 ```
 
 Build:
 ```console
-foo@bar:~$ pnpm build
+foo@bar:~$ npm run build
 ```
 
 Run:
 ```console
-foo@bar:~$ pnpm dev
+foo@bar:~$ npm run dev
 ```
 
 

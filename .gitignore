@@ -4,11 +4,11 @@ logs
 npm-debug.log*
 pnpm-debug.log*
 
-node_modules
-.DS_Store
-dist
 coverage
 *.local
+
+# MacOS
+.DS_Store
 
 # Editor directories and files
 .vscode/*
@@ -19,5 +19,11 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-
 *.tsbuildinfo
+
+# Default TypeSpec output
+tsp-output/
+dist/
+
+# Dependency directories
+node_modules/
