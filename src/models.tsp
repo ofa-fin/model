@@ -31,6 +31,7 @@ model BaseDocument {
    * May be read-only depending on the implementation.
    */
   updatedAt?: string;
+
 }
 
 model Address {
@@ -125,6 +126,25 @@ model Partner extends BaseDocument {
 
   /** TODO: Do we need array? */
   bankAccounts?: BankAccount[];
+}
+
+/**
+ * Reference to a partner.
+ * 
+ * In example, in entries we don't include all the partner information, but only the id and name.
+ * Name is stored when saving a object and will NOT be updated when the partner is updated.
+ */
+model PartnerRef {
+  /** Partner id. */
+  @example("123e4567-e89b-12d3-a456-426614174000")
+  id?: string;
+
+  /** Partner name. 
+   * 
+   * Stored when saving a object and will NOT be updated when the partner is updated.
+  */
+  @example("Laskupiste Oy")
+  name: string;
 }
 
 @error
