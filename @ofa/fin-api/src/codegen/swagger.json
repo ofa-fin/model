@@ -267,11 +267,11 @@
 		}
 	},
 	"info": {
-		"title": "ofa-fin-model",
+		"title": "@ofa/fin-api",
 		"version": "1.0.0",
-		"description": "Model for Open Financial API (FIN)",
+		"description": "Open API definition for Open Financial API (FIN)",
 		"license": {
-			"name": "ISC"
+			"name": "MIT"
 		},
 		"contact": {}
 	},

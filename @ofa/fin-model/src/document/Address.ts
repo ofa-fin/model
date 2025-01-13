@@ -1,4 +1,4 @@
-import { BaseDocument } from "./BaseDocument.js";
+import type { BaseDocument } from "./BaseDocument.js";
 
 /**
  * Address document.

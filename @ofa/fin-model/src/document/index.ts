@@ -1,0 +1,6 @@
+export * from "./Address.js"
+export * from "./BankAccount.js"
+export * from "./BaseDocument.js"
+export * from "./Document.js"
+export * from "./Entry.js"
+export * from "./Partner.js"

@@ -1,5 +1,5 @@
-import { BaseDocument } from "./BaseDocument.js";
-import { Partner } from "./Partner.js";
+import type { BaseDocument } from "./BaseDocument.js";
+import type { Partner } from "./Partner.js";
 
 /**
  * Base class for document.

@@ -1,13 +1,10 @@
-import { BaseDocument } from "./BaseDocument.js";
-import { DimensionEntry } from "./DimensionEntry.js";
-import { EntryVatInformation } from "./VatInformation.js";
+import type { BaseDocument } from "./BaseDocument.js";
+import type { DimensionEntry, EntryVatInformation } from "../general/index.js";
 
 enum DebitOrCredit {
     DEBIT = 'DEBIT',
     CREDIT = 'CREDIT'
 }
-
-
 
 /**
  * Some basic information about an account.

@@ -1,0 +1,9 @@
+{
+    "extends": "@ofa/shared-config/tsconfig.base.json",
+    "include": ["./src"],
+    "compilerOptions": {
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "tsBuildInfoFile": "./dist/.tsbuildinfo"
+    }
+}

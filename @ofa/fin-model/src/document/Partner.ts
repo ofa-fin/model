@@ -1,6 +1,6 @@
-import { BaseDocument } from "./BaseDocument.js";
-import { Address } from "./Address.js";
-import { BankAccount } from "./BankAccount.js";
+import type { BaseDocument } from "./BaseDocument.js";
+import type { Address } from "./Address.js";
+import type { BankAccount } from "./BankAccount.js";
 
 /**
  * Partner document.

@@ -1,34 +1,13 @@
 {
-  "name": "ofa-fin-model",
+  "name": "ofa-monorepo",
   "version": "1.0.0",
-  "description": "Model for Open Financial API (FIN)",
-  "main": "dist/server.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
+  "description": "OFA monorepo (FIN)",
   "packageManager": "pnpm@9.0.2",
   "scripts": {
-    "build": "tsoa spec-and-routes && tsc",
-    "dev": "tsoa spec-and-routes && tsx watch src/server-dev.ts",
-    "build:tsoa": "tsoa spec-and-routes",
-    "test": "vitest"
+    "build": "pnpm --filter {@ofa/*}... build",
+    "dev": "pnpm --filter @ofa/fin-api dev"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@tsoa/runtime": "6.2.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "swagger-ui-express": "^5.0.0",
-    "tsoa": "^6.2.0",
-    "typescript": "^5.4.5"
-  },
-  "devDependencies": {
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.12.7",
-    "@types/swagger-ui-express": "^4.1.6",
-    "tsx": "^4.7.2"
-  }
+  "license": "MIT"
 }

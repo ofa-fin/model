@@ -1,5 +1,5 @@
-Model for Open Financial API (FIN)
-==================================
+Open Financial API (FIN) Monorepo
+=================================
 
 The Open Financial API is an Open Source initiative to define an Open API for interoperativity
 of Financial Mangement Software in Finland.

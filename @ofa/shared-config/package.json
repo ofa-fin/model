@@ -1,0 +1,10 @@
+{
+  "name": "@ofa/shared-config",
+  "private": "true",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Centralized place for configuration files.",
+  "scripts": {
+  },
+  "license": "MIT"
+}

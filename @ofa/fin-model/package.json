@@ -1,0 +1,26 @@
+{
+  "name": "@ofa/fin-model",
+  "version": "1.0.0",
+  "description": "Model for Open Financial API (FIN)",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "packageManager": "pnpm@9.0.2",
+  "exports": {
+    "development": "./src/index.ts",
+    "default": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo Tests not specified (TODO: should we add vitest?)"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@ofa/shared-config": "workspace:^",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+  }
+}

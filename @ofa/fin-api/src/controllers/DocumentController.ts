@@ -4,7 +4,7 @@ import {
   Route,
   Tags
 } from "tsoa";
-import { Document } from "../model/Document.js";
+import { Document } from "@ofa/fin-model";
 
 /**
  * Management API for documents.
