@@ -8,6 +8,7 @@
   "packageManager": "pnpm@9.0.2",
   "scripts": {
     "build": "tsoa spec-and-routes && tsc",
+    "build:dep": "pnpm --filter \"@ofa/fin-api^...\" build",
     "dev": "tsoa spec-and-routes && tsx watch src/server-dev.ts",
     "build:tsoa": "tsoa spec-and-routes",
     "test": "vitest"

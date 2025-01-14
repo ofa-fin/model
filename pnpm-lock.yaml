@@ -6,6 +6,8 @@ settings:
 
 importers:
 
+  .: {}
+
   '@ofa/fin-api':
     dependencies:
       '@ofa/fin-model':
