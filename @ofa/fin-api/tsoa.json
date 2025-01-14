@@ -5,6 +5,11 @@
   "spec": {
     "outputDirectory": "./src/codegen",
     "specVersion": 3,
+    "contact": {
+      "name": "OFA-FIN",
+      "email": "info@ofafin.com",
+      "url": "https://github.com/ofa-fin/model"
+    },
     "tags": [
       {
         "name": "About",

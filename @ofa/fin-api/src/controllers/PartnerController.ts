@@ -15,6 +15,7 @@ import {
   SuccessResponse,
   Tags
 } from "tsoa";
+import { HttpUtil } from "../util/HttpCodeReponse.js";
 
 /**
  * Management API for partners.
@@ -25,6 +26,33 @@ export class PartnerController extends Controller {
 
   constructor() {
     super();
+  }
+
+  /**
+   * List all partners.
+   * @param clientVersion Obligatory client version header
+   * @param locale Obligatory locale query parameter
+   */
+  @Example<Partner[]>([{
+    id: "123e4567-e89b-12d3-a456-426614174000",
+    code: "PARTNER123",
+    name: "Oy Yritys Ab",
+    businessId: "1234567-8",
+    vatNumber: "FI12345678",
+    email: "contact@yritys.fi",
+    language: "fi",
+    country: "FI"
+  }], "Example list of partners")
+  @Example<Partner[]>([], "Empty list of partners")
+  @Get()
+  @SuccessResponse(200, HttpUtil.CODE_200)
+  @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
+  @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
+  public async listPartners(
+    @Header("client-version") clientVersion?: String,
+    @Query() locale?: String
+  ): Promise<Partner[]> {
+    return [] as any;
   }
 
   /**
@@ -79,11 +107,13 @@ export class PartnerController extends Controller {
     ]
   }, "Partner with all data")
   @Get("{partnerId}")
-  @SuccessResponse(200, "Success")
-  @Response<{ message: NotFoundError }>(404, 'Not Found')
+  @SuccessResponse(200, HttpUtil.CODE_200)
+  @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
+  @Response<{ message: NotFoundError }>(404, HttpUtil.CODE_404)
+  @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async getPartner(
     @Path() partnerId: String,
-    @Header() clientVersion?: String,
+    @Header("client-version") clientVersion?: String,
     @Query() locale?: String
   ): Promise<Partner> {
     return {} as any;
@@ -107,12 +137,13 @@ export class PartnerController extends Controller {
    * }
    */
   @Post()
-  @SuccessResponse(201, "Created")
-  @Response<{ message: ValidationError }>(400, 'Bad Request')
-  @Response<{ message: UnauthorizedError }>(401, 'Unauthorized')
+  @SuccessResponse(201, HttpUtil.CODE_201)
+  @Response<{ message: ValidationError }>(400, HttpUtil.CODE_400)
+  @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
+  @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async createPartner(
     @Body() requestBody: PartnerRequest,
-    @Header() clientVersion?: String,
+    @Header("client-version") clientVersion?: String,
     @Query() locale?: String
   ): Promise<Partner> {
     return {} as any;
@@ -127,11 +158,14 @@ export class PartnerController extends Controller {
    */
   @Put("{partnerId}")
   @SuccessResponse(200, "Success")
-  @Response<{ message: NotFoundError }>(404, 'Not Found')
+  @Response<{ message: ValidationError }>(400, HttpUtil.CODE_400)
+  @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
+  @Response<{ message: NotFoundError }>(404, HttpUtil.CODE_404)
+  @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async updatePartner(
     @Path() partnerId: String,
     @Body() requestBody: PartnerRequest,
-    @Header() clientVersion?: String,
+    @Header("client-version") clientVersion?: String,
     @Query() locale?: String
   ): Promise<Partner> {
     return {} as any;
@@ -144,21 +178,17 @@ export class PartnerController extends Controller {
    * @param locale Obligatory locale query parameter
    */
   @Delete("{partnerId}")
-  @SuccessResponse(204, "No Content")
-  @Response<{ message: NotFoundError }>(404, 'Not Found')
+  @SuccessResponse(204, HttpUtil.CODE_204)
+  @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
+  @Response<{ message: NotFoundError }>(404, HttpUtil.CODE_404)
+  @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async deletePartner(
     @Path() partnerId: String,
-    @Header() clientVersion?: String,
+    @Header("client-version") clientVersion?: String,
     @Query() locale?: String
   ): Promise<void> {
     return;
   }
-
-}
-
-export class CommonParameters {
-  locale?: string;
-  clientVersion?: string;
 }
 
 export class NotFoundError {
