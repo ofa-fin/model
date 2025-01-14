@@ -53,6 +53,39 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"EinvoiceAddress": {
+				"description": "Einvoice address document.",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Document id as GUID.\nRead-only. Will be generated after creation."
+					},
+					"createdAt": {
+						"type": "string",
+						"description": "Document creation time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"updatedAt": {
+						"type": "string",
+						"description": "Document update time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"operator": {
+						"type": "string",
+						"description": "Einvoice operator code",
+						"example": "E204503"
+					},
+					"address": {
+						"type": "string",
+						"description": "Einvoice address - usually OVT-address",
+						"example": "003712345678"
+					}
+				},
+				"required": [
+					"operator",
+					"address"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"BankAccount": {
 				"description": "Bank account document.",
 				"properties": {
@@ -98,18 +131,6 @@
 			"Partner": {
 				"description": "Partner document.",
 				"properties": {
-					"id": {
-						"type": "string",
-						"description": "Document id as GUID.\nRead-only. Will be generated after creation."
-					},
-					"createdAt": {
-						"type": "string",
-						"description": "Document creation time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
-					},
-					"updatedAt": {
-						"type": "string",
-						"description": "Document update time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
-					},
 					"code": {
 						"type": "string",
 						"description": "Partner's code."
@@ -120,7 +141,9 @@
 					},
 					"businessId": {
 						"type": "string",
-						"description": "Partner's business id."
+						"description": "Partner's business id.",
+						"example": "1234567-8",
+						"pattern": "^[0-9]{7}-[0-9]$"
 					},
 					"vatNumber": {
 						"type": "string",
@@ -162,8 +185,169 @@
 						"$ref": "#/components/schemas/Address",
 						"description": "Partner's invoice address."
 					},
-					"einvoiceAddress": {
-						"description": "TODO"
+					"einvoiceAddresses": {
+						"items": {
+							"$ref": "#/components/schemas/EinvoiceAddress"
+						},
+						"type": "array",
+						"description": "Partner's einvoice addresses"
+					},
+					"bankAccounts": {
+						"items": {
+							"$ref": "#/components/schemas/BankAccount"
+						},
+						"type": "array",
+						"description": "TODO: Do we need array?"
+					},
+					"id": {
+						"type": "string",
+						"description": "Document id as GUID.\nRead-only. Will be generated after creation."
+					},
+					"createdAt": {
+						"type": "string",
+						"description": "Document creation time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					},
+					"updatedAt": {
+						"type": "string",
+						"description": "Document update time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+					}
+				},
+				"required": [
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"NotFoundError": {
+				"properties": {
+					"code": {
+						"type": "string",
+						"enum": [
+							"NOT_FOUND"
+						],
+						"nullable": false
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"code",
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ValidationError": {
+				"properties": {
+					"code": {
+						"type": "string",
+						"enum": [
+							"VALIDATION_ERROR"
+						],
+						"nullable": false
+					},
+					"message": {
+						"type": "string"
+					},
+					"details": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"code",
+					"message",
+					"details"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UnauthorizedError": {
+				"properties": {
+					"code": {
+						"type": "string",
+						"enum": [
+							"UNAUTHORIZED"
+						],
+						"nullable": false
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"code",
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PartnerRequest": {
+				"description": "Partner request document.",
+				"properties": {
+					"code": {
+						"type": "string",
+						"description": "Partner's code."
+					},
+					"name": {
+						"type": "string",
+						"description": "Partner's name."
+					},
+					"businessId": {
+						"type": "string",
+						"description": "Partner's business id.",
+						"example": "1234567-8",
+						"pattern": "^[0-9]{7}-[0-9]$"
+					},
+					"vatNumber": {
+						"type": "string",
+						"description": "Partner's vat number."
+					},
+					"email": {
+						"type": "string",
+						"description": "Partner's email."
+					},
+					"phone": {
+						"type": "string",
+						"description": "Partner's phone number."
+					},
+					"homepage": {
+						"type": "string",
+						"description": "Partner's homepage."
+					},
+					"language": {
+						"type": "string",
+						"description": "Partner's language as ISO 639-1 code, like fi"
+					},
+					"domicile": {
+						"type": "string",
+						"description": "Partner's domicile."
+					},
+					"country": {
+						"type": "string",
+						"description": "Partner's country as ISO 3166-1 alpha-2 code, like FI"
+					},
+					"address": {
+						"$ref": "#/components/schemas/Address",
+						"description": "Partner's address."
+					},
+					"deliveryAddress": {
+						"$ref": "#/components/schemas/Address",
+						"description": "Partner's delivery address."
+					},
+					"invoiceAddress": {
+						"$ref": "#/components/schemas/Address",
+						"description": "Partner's invoice address."
+					},
+					"einvoiceAddresses": {
+						"items": {
+							"$ref": "#/components/schemas/EinvoiceAddress"
+						},
+						"type": "array",
+						"description": "Partner's einvoice addresses"
 					},
 					"bankAccounts": {
 						"items": {
@@ -174,8 +358,7 @@
 					}
 				},
 				"required": [
-					"name",
-					"bankAccounts"
+					"name"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -276,6 +459,364 @@
 		"contact": {}
 	},
 	"paths": {
+		"/api/v1/partner/{partnerId}": {
+			"get": {
+				"operationId": "GetPartner",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Partner"
+								},
+								"examples": {
+									"Partner with all data": {
+										"value": {
+											"id": "123e4567-e89b-12d3-a456-426614174000",
+											"createdAt": "2024-12-18T14:32:05Z",
+											"updatedAt": "2024-12-18T14:32:05Z",
+											"code": "PARTNER123",
+											"name": "Oy Yritys Ab",
+											"businessId": "1234567-8",
+											"vatNumber": "FI12345678",
+											"email": "contact@yritys.fi",
+											"phone": "+358401234567",
+											"homepage": "https://yritys.fi",
+											"language": "fi",
+											"domicile": "Helsinki",
+											"country": "FI",
+											"address": {
+												"street": "Testikatu 8",
+												"postalCode": "00100",
+												"city": "Helsinki",
+												"countryCode": "FI"
+											},
+											"deliveryAddress": {
+												"street": "Toimituskatu 3",
+												"postalCode": "00120",
+												"city": "Helsinki",
+												"countryCode": "FI"
+											},
+											"invoiceAddress": {
+												"street": "Laskutuskatu 5",
+												"postalCode": "00150",
+												"city": "Helsinki",
+												"countryCode": "FI"
+											},
+											"einvoiceAddresses": [
+												{
+													"operator": "E204503",
+													"address": "003712345678"
+												}
+											],
+											"bankAccounts": [
+												{
+													"iban": "FI1234567890123456",
+													"bic": "OKOYFIHH"
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"$ref": "#/components/schemas/NotFoundError"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get partner by id.",
+				"tags": [
+					"Partners"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "The partners's identifier",
+						"in": "path",
+						"name": "partnerId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Obligatory client version header",
+						"in": "header",
+						"name": "clientVersion",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Obligatory locale query parameter",
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdatePartner",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Partner"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"$ref": "#/components/schemas/NotFoundError"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "Update partner by id.",
+				"tags": [
+					"Partners"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "The partner's identifier",
+						"in": "path",
+						"name": "partnerId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Obligatory client version header",
+						"in": "header",
+						"name": "clientVersion",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Obligatory locale query parameter",
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "Updated partner data",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/PartnerRequest",
+								"description": "Updated partner data"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeletePartner",
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"$ref": "#/components/schemas/NotFoundError"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "Delete partner by id.",
+				"tags": [
+					"Partners"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "The partner's identifier",
+						"in": "path",
+						"name": "partnerId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Obligatory client version header",
+						"in": "header",
+						"name": "clientVersion",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Obligatory locale query parameter",
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/partner": {
+			"post": {
+				"operationId": "CreatePartner",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Partner"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"$ref": "#/components/schemas/ValidationError"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"$ref": "#/components/schemas/UnauthorizedError"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "Create a new partner.",
+				"tags": [
+					"Partners"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Obligatory client version header",
+						"in": "header",
+						"name": "clientVersion",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Obligatory locale query parameter",
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "Partner data",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/PartnerRequest",
+								"description": "Partner data"
+							},
+							"example": {
+								"code": "PARTNER123",
+								"name": "Oy Yritys Ab",
+								"businessId": "1234567-8",
+								"vatNumber": "FI12345678",
+								"email": "contact@yritys.fi",
+								"phone": "+358401234567",
+								"language": "fi",
+								"domicile": "Helsinki",
+								"country": "FI"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/api/v01/document/{id}": {
 			"get": {
 				"operationId": "FindById",
@@ -309,36 +850,7 @@
 				]
 			}
 		},
-		"/api/v01/about/hello/{name}": {
-			"get": {
-				"operationId": "Hello",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"tags": [
-					"About"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "name",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/api/v01/about/swagger/main": {
+		"/api/v1/about/swagger/main": {
 			"get": {
 				"operationId": "Swagger",
 				"responses": {

@@ -25,7 +25,7 @@ export function registerApi(app: Express, addPublic = false): void {
   app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
     return res.send(swaggerUi.generateHTML(undefined, {
       explorer: true,
-      swaggerUrls: [{ name: "Main", url: "/api/v01/about/swagger/main" }] as any
+      swaggerUrls: [{ name: "Main", url: "/api/v1/about/swagger/main" }] as any
     }));
   });
   if (addPublic) {

@@ -11,17 +11,12 @@ import swaggerFile from '../codegen/swagger.json' assert { type: "json" };
 /**
  * General information and metadata about the API.
  */
-@Route("api/v01/about")
+@Route("api/v1/about")
 @Tags("About")
 export class AboutController extends Controller {
 
   constructor() {
     super();
-  }
-
-  @Get("hello/{name}")
-  public hello(name?: string): any {
-    return "Hello " + name;
   }
 
   /**
