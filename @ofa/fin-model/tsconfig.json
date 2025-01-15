@@ -1,6 +1,6 @@
 {
     "extends": "@ofa/shared-config/tsconfig.base.json",
-    "include": ["./src"],
+    "include": ["./src", "../fin-api/src/controllers/examples/Entry.examples.ts"],
     "compilerOptions": {
       "rootDir": "./src",
       "outDir": "./dist",

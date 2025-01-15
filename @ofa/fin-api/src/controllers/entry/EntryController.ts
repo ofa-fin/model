@@ -1,6 +1,7 @@
 import { Entry } from "@ofa/fin-model";
 import { Controller, Get, Route, Tags, SuccessResponse, Example, Queries } from "tsoa";
-import { HttpUtil } from "../util/HttpCodeReponse.js";
+import { HttpUtil } from "../../util/HttpCodeReponse.js";
+import { bankDepositEntries, saleEntries } from "./entry.examples.js";
 
 
 interface GetEntriesQuery {
@@ -41,7 +42,8 @@ export class EntryController extends Controller {
      * 
      * Will have lots of query parameters.
      */
-    @Example<Entry[]>([], "Empty list of entries")
+    @Example<Entry[]>(saleEntries, "Entries for simple sale")
+    @Example<Entry[]>(bankDepositEntries, "Entries for bank deposit")
     @Get()
     @SuccessResponse(200, HttpUtil.CODE_200)    
     public async getEntries(

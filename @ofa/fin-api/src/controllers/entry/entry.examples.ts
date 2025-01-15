@@ -1,9 +1,8 @@
 import type { Entry } from "@ofa/fin-model";
-import { DebitOrCredit, VatEntryType, VatLevel, VatMainClass, VatSubClass } from "@ofa/fin-model";
+import { VatEntryType, VatLevel, VatMainClass, VatSubClass, DebitOrCredit } from "@ofa/fin-model";
 
-/** Simple salary */
-
-const salaryContraEntry: Entry = {
+export const saleEntries : Entry[] = [
+{
     id: '7bd3ee19-af4b-4afd-b08f-de0646471f54',
     date: '2024-01-01',
     description: 'Contra entry',
@@ -18,9 +17,7 @@ const salaryContraEntry: Entry = {
             id: '7bd3ee19-af4b-4afd-b08f-de0646471f54',
             visibleIdentifier: 'ML-1/2024'
         }
-    }
-
-const salaryBaseEntry: Entry = {
+    },{
     id: '3146ba71-d7a2-43ba-93ea-37c3f78887b6',
     description: 'Salary',
     date: '2024-01-01',
@@ -42,9 +39,7 @@ const salaryBaseEntry: Entry = {
         rate: 25.50,     
         bookingType: VatEntryType.BASE,   
     }
-}
-
-const salaryVatEntry: Entry = {
+},{
     id: '4698d75b-aede-47d4-834b-125e6fed3a1d',
     date: '2024-01-01',
     description: 'SalaryVAT',
@@ -67,10 +62,10 @@ const salaryVatEntry: Entry = {
         bookingType: VatEntryType.VAT,   
     }
 }
+]
 
-/** Bank deposit */
-const bankDepositBankEntry: Entry = {
-    id: '7bd3ee19-af4b-4afd-b08f-de0646471f54',
+export const bankDepositEntries : Entry[] = [
+{   id: '7bd3ee19-af4b-4afd-b08f-de0646471f54',
     date: '2024-01-01',
     description: 'Bank deposit',
     amount: 100.00,    
@@ -84,9 +79,7 @@ const bankDepositBankEntry: Entry = {
         id: '7bd3ee19-af4b-4afd-b08f-de0646471f54',
         visibleIdentifier: '25/2024'
     },
-}
-
-const bankDepositCashEntry: Entry = {
+},{
     id: '7bd3ee19-af4b-4afd-b08f-de0646471f54',
     date: '2024-01-01',
     description: 'Bank deposit',
@@ -102,4 +95,5 @@ const bankDepositCashEntry: Entry = {
         visibleIdentifier: '25/2024'
     },
 }
+]
 
