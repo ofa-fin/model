@@ -8,16 +8,9 @@ export enum VatMainClass {
     NO_VAT = 'NO_VAT'
 }
 
-/**
- * Vat sub class.
- * 
- * Not used for NO_VAT
- */
 export enum VatSubClass {
     /** Domestic VAT, in net method */
     NORMAL = 'NORMAL',
-    /** Domestic VAT, in gross method */
-    GROSS = 'GROSS',
     /** Marginal VAT. Reason should be set for sales invoices- */
     MARGINAL = 'MARGINAL',
     /** EU reverse VAT. Goods or services should be set. */
@@ -26,85 +19,59 @@ export enum VatSubClass {
     BUILDING = 'BUILDING',
     /** Vat for import. Will be reported in domestic VAT */
     IMPORT = 'IMPORT',
+    /** Zero based VAT. (Nollaverokannan alainen myynti) */
+    ZERO_BASED = 'ZERO_BASED',
 }
 
-/**
- * Goods or services.
- * Only for EU VAT.
- */
 export enum GoodsOrServices {
-    /** Goods */
     GOODS = 'GOODS',
-    /** Services */
     SERVICES = 'SERVICES',
 }
 
-/**
- * Vat level.
- * 
- */
 export enum VatLevel {
     /** Hight rate (25,5 or 24%) */
     HIGH = 'HIGH',
     /** Medium rate (14%) */
     MEDIUM = 'MEDIUM',
     /** Low rate (10%) */
-    LOW = 'LOW',
-    /** Nollaverokannan alainen myynti (Should this be as VatSubClass?) */
-    ZERO = 'ZERO',
+    LOW = 'LOW'
 }
 
-/**
- * Marginal VAT reason.
- * Only for MARGINAL VAT.
- */
 export enum MarginalVatReason {
     SECOND_HAND = 'SECOND_HAND',
     COLLECTION = 'COLLECTION',
     ART = 'ART',
 }
 
-/**
- * Vat information.
- * 
- * All the combinations are not allowed.
- */
 export interface VatInformation {
-    /** Main class of the VAT. 
-     * @example SALES
-    */
     mainClass: VatMainClass;
-
-    /** Sub class of the VAT.
-     * @example NORMAL
-    */
     subClass?: VatSubClass;
-
-    /** Goods or services.
-     * Only for EU VAT. 
-     * @example undefined
-    */
     goodsOrServices?: GoodsOrServices;
-
-    /** Marginal VAT reason.
-     * Only for MARGINAL VAT.
-     * @example undefined
-    */
     marginalVatReason?: MarginalVatReason;
-
-    /** Vat level.  
-     * @example HIGH
-    */
-    level?: VatLevel;
-
-    /** Vat rate.
-     * @example 25.5
-    */
-    rate: number;
-
-    /** Percentage (0 to 100) of the VAT amount that is returned. Default is 100. 
-     * @example undefined
-    */
+    vatLevel?: VatLevel;
+    vatRate: number;
+    /** Percentage (0 to 100) of the VAT amount that is returned. Default is 100. */
     returnPercentage?: number;
 }
 
+/**
+ * Vat entry type.
+ * 
+ * Type of VAT related accounting entry.
+ * DRAFT.
+ * 
+ */
+export enum VatEntryType {
+    /** Base amount (vat excluded). Informational. */
+    BASE = 'BASE',
+    /** Vat amount, accounted to Arvonlisäverovelka. */
+    VAT = 'VAT',
+    /** Return amount, accounted to Arvonlisäverosaamiset. */    
+    RETURN = 'RETURN',    
+    /** In reverse VAT, if no rights to VAT return, the VAT part will be accounted to salary account. */
+    NO_RETURN_PART = 'NO_RETURN_PART',
+}
+
+export interface EntryVatInformation extends VatInformation {
+    bookingType?: VatEntryType;
+}

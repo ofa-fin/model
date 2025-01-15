@@ -1,0 +1,993 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Model for Open Financial API (FIN)",
+    "summary": "Open Financial API (FIN) is a RESTful API for financial services.",
+    "description": "Open Financial API (FIN) is a RESTful API for financial services. It provides a way to manage bank accounts, transactions, and partners.",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "Partners API"
+    }
+  ],
+  "paths": {
+    "/api/v1/partners": {
+      "get": {
+        "operationId": "Partners_listPartners",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CommonParameters.locale"
+          },
+          {
+            "$ref": "#/components/parameters/CommonParameters.clientVersion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Partner"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Partners API"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "Partners_createPartner",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CommonParameters.locale"
+          },
+          {
+            "$ref": "#/components/parameters/CommonParameters.clientVersion"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Partner"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Partner"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The server could not understand the request due to invalid syntax.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access is unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Partners API"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Partner"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/partners/{partnerId}": {
+      "get": {
+        "operationId": "Partners_getPartner",
+        "parameters": [
+          {
+            "name": "partnerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/CommonParameters.locale"
+          },
+          {
+            "$ref": "#/components/parameters/CommonParameters.clientVersion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Partner"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Partners API"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "Partners_updatePartner",
+        "parameters": [
+          {
+            "name": "partnerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/CommonParameters.locale"
+          },
+          {
+            "$ref": "#/components/parameters/CommonParameters.clientVersion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Partner"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The server could not understand the request due to invalid syntax.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access is unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Partners API"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Partner"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "Partners_deletePartner",
+        "parameters": [
+          {
+            "name": "partnerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/CommonParameters.locale"
+          },
+          {
+            "$ref": "#/components/parameters/CommonParameters.clientVersion"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "401": {
+            "description": "Access is unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Partners API"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "CommonParameters.clientVersion": {
+        "name": "client-version",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "CommonParameters.locale": {
+        "name": "locale",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "explode": false
+      }
+    },
+    "schemas": {
+      "Account": {
+        "type": "object",
+        "required": [
+          "name",
+          "number"
+        ],
+        "properties": {
+          "name": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "example": {
+              "fi": "Pankkitili",
+              "en": "Bank account"
+            },
+            "description": "Account name (in multiple languages)."
+          },
+          "number": {
+            "type": "string",
+            "example": "1910",
+            "description": "Account number."
+          },
+          "defaultVat": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VatInformation"
+              }
+            ],
+            "example": {
+              "mainClass": "SALES",
+              "subClass": "NORMAL",
+              "vatRate": 24
+            },
+            "description": "Default VAT information."
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseDocument"
+          }
+        ],
+        "description": "Accounting account."
+      },
+      "AccountRef": {
+        "type": "object",
+        "required": [
+          "number",
+          "name"
+        ],
+        "properties": {
+          "number": {
+            "type": "string",
+            "example": "1910",
+            "description": "Account number."
+          },
+          "name": {
+            "type": "string",
+            "example": "Pankkitili",
+            "description": "Account name (in current language)."
+          }
+        },
+        "description": "Reference to an account.\n\nUsed in another models to reference an account."
+      },
+      "Address": {
+        "type": "object",
+        "required": [
+          "postalCode"
+        ],
+        "properties": {
+          "street": {
+            "type": "string",
+            "description": "Street address."
+          },
+          "street2": {
+            "type": "string",
+            "description": "Street address line 2."
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "Postal code."
+          },
+          "city": {
+            "type": "string",
+            "description": "City"
+          },
+          "countrySubdivision": {
+            "type": "string",
+            "description": "Country subdivision, like Pirkanmaa."
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "Country as ISO 3166-1 alpha-2 code, like FI"
+          }
+        }
+      },
+      "BankAccount": {
+        "type": "object",
+        "required": [
+          "iban"
+        ],
+        "properties": {
+          "iban": {
+            "type": "string",
+            "description": "IBAN account number."
+          },
+          "bic": {
+            "type": "string",
+            "description": "BIC code."
+          },
+          "bankName": {
+            "type": "string",
+            "description": "Bank name."
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency as ISO 4217 code, like EUR."
+          },
+          "preferred": {
+            "type": "boolean",
+            "description": "Tells if current bank account is preferred one"
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseDocument"
+          }
+        ],
+        "description": "Bank account document."
+      },
+      "BaseDocument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Document id as GUID.\nRead-only. Will be generated after creation."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Document creation time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Document update time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.\nMay be read-only depending on the implementation."
+          }
+        },
+        "description": "Base model for document."
+      },
+      "DebitOrCredit": {
+        "type": "string",
+        "enum": [
+          "DEBIT",
+          "CREDIT"
+        ]
+      },
+      "DimensionRef": {
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "@COSTCENTER",
+            "description": "Dimension id.\n\nRecommended to be a UUID.\nPossible to use some fixed ids like '"
+          },
+          "name": {
+            "type": "string",
+            "example": "Leiritoiminta",
+            "description": "Dimension name, in current language."
+          }
+        }
+      },
+      "Entry": {
+        "type": "object",
+        "required": [
+          "date",
+          "amount",
+          "description",
+          "debitOrCredit",
+          "account",
+          "dimensions",
+          "documentId"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "example": "2024-01-01",
+            "description": "Entry date in ISO date format."
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal",
+            "example": 100,
+            "description": "Amount of the entry."
+          },
+          "description": {
+            "type": "string",
+            "example": "Payment for invoice 123456",
+            "description": "Description of the entry."
+          },
+          "debitOrCredit": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DebitOrCredit"
+              }
+            ],
+            "example": "DEBIT",
+            "description": "Debit or credit."
+          },
+          "account": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountRef"
+              }
+            ],
+            "example": {
+              "number": "4000",
+              "name": "Ostot"
+            },
+            "description": "Account of the entry."
+          },
+          "vat": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntryVatInformation"
+              }
+            ],
+            "example": {
+              "mainClass": "SALES",
+              "subClass": "NORMAL",
+              "goodsOrServices": "GOODS",
+              "marginalVatReason": "SECOND_HAND",
+              "vatLevel": "HIGH",
+              "vatRate": 24
+            },
+            "description": "Vat information of the entry."
+          },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntryDimension"
+            },
+            "example": [
+              {
+                "dimension": {
+                  "id": "@COSTCENTER",
+                  "name": "Kustannuspaikka"
+                },
+                "values": [
+                  {
+                    "id": "123e4567-e89b-12d3-a456-426614174000",
+                    "name": "Kustannuspaikka 1",
+                    "percentage": 50
+                  },
+                  {
+                    "id": "123e4567-e89b-12d3-a456-426614174001",
+                    "name": "Kustannuspaikka 2",
+                    "percentage": 50
+                  }
+                ]
+              }
+            ],
+            "description": "Dimensions of the entry."
+          },
+          "partner": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PartnerRef"
+              }
+            ],
+            "example": {
+              "id": "123e4567-e89b-12d3-a456-426614174000",
+              "name": "Laskupiste Oy"
+            },
+            "description": "Partner of the entry."
+          },
+          "documentId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000",
+            "description": "Id of the document that created the entry."
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseDocument"
+          }
+        ],
+        "description": "Accounting entry."
+      },
+      "EntryDimension": {
+        "type": "object",
+        "required": [
+          "dimension",
+          "values"
+        ],
+        "properties": {
+          "dimension": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DimensionRef"
+              }
+            ],
+            "example": {
+              "id": "@COSTCENTER",
+              "name": "Kustannuspaikka"
+            },
+            "description": "Dimension id."
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntryDimensionValue"
+            },
+            "example": [
+              {
+                "id": "123e4567-e89b-12d3-a456-426614174000",
+                "name": "Kustannuspaikka 1",
+                "percentage": 100
+              },
+              {
+                "id": "123e4567-e89b-12d3-a456-426614174001",
+                "name": "Kustannuspaikka 2",
+                "percentage": 50
+              }
+            ],
+            "description": "Dimension values."
+          }
+        },
+        "description": "Dimensions of an entry in one dimension."
+      },
+      "EntryDimensionValue": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000",
+            "description": "Dimension value id.\n\nFor example, if we have cost center dimension, the value id is the cost center id."
+          },
+          "name": {
+            "type": "string",
+            "example": "Const Center 1",
+            "description": "Dimension value name, in current language"
+          },
+          "percentage": {
+            "type": "number",
+            "format": "decimal",
+            "example": 100,
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Dimension value percentage.\n\nDefaults to 100."
+          }
+        },
+        "description": "One dimension value"
+      },
+      "EntryVatInformation": {
+        "type": "object",
+        "properties": {
+          "bookingType": {
+            "$ref": "#/components/schemas/VatEntryType"
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/VatInformation"
+          }
+        ]
+      },
+      "GoodsOrServices": {
+        "type": "string",
+        "enum": [
+          "GOODS",
+          "SERVICES"
+        ]
+      },
+      "InternalServerError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "INTERNAL_SERVER_ERROR"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MarginalVatReason": {
+        "type": "string",
+        "enum": [
+          "SECOND_HAND",
+          "COLLECTION",
+          "ART"
+        ]
+      },
+      "NotFoundError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "NOT_FOUND"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Partner": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Partner's code."
+          },
+          "name": {
+            "type": "string",
+            "example": "Laskupiste Oy",
+            "description": "Partner's name."
+          },
+          "businessId": {
+            "type": "string",
+            "example": "2936138-7",
+            "description": "Partner's business id."
+          },
+          "vatNumber": {
+            "type": "string",
+            "description": "Partner's vat number."
+          },
+          "email": {
+            "type": "string",
+            "description": "Partner's email."
+          },
+          "phone": {
+            "type": "string",
+            "description": "Partner's phone number."
+          },
+          "homepage": {
+            "type": "string",
+            "example": "https://www.laskupiste.fi",
+            "description": "Partner's homepage."
+          },
+          "language": {
+            "type": "string",
+            "description": "Partner's language as ISO 639-1 code, like fi"
+          },
+          "domicile": {
+            "type": "string",
+            "description": "Partner's domicile."
+          },
+          "country": {
+            "type": "string",
+            "description": "Partner's country as ISO 3166-1 alpha-2 code, like FI"
+          },
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              }
+            ],
+            "description": "Partner's address."
+          },
+          "deliveryAddress": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              }
+            ],
+            "description": "Partner's delivery address."
+          },
+          "invoiceAddress": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              }
+            ],
+            "description": "Partner's invoice address."
+          },
+          "einvoiceAddress": {
+            "description": "TODO"
+          },
+          "bankAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BankAccount"
+            },
+            "description": "TODO: Do we need array?"
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseDocument"
+          }
+        ],
+        "example": {
+          "name": "Laskupiste Oy",
+          "businessId": "2936138-7",
+          "homepage": "https://www.laskupiste.fi"
+        },
+        "description": "Partner document."
+      },
+      "PartnerRef": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000",
+            "description": "Partner id."
+          },
+          "name": {
+            "type": "string",
+            "example": "Laskupiste Oy",
+            "description": "Partner name. \n\nStored when saving a object and will NOT be updated when the partner is updated."
+          }
+        },
+        "description": "Reference to a partner.\n\nIn example, in entries we don't include all the partner information, but only the id and name.\nName is stored when saving a object and will NOT be updated when the partner is updated."
+      },
+      "UnauthorizedError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ValidationError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "details"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "VALIDATION_ERROR"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "VatEntryType": {
+        "type": "string",
+        "enum": [
+          "BASE",
+          "VAT",
+          "RETURN",
+          "NO_RETURN_PART"
+        ],
+        "description": "Type of VAT related accounting entry."
+      },
+      "VatInformation": {
+        "type": "object",
+        "required": [
+          "mainClass",
+          "vatRate"
+        ],
+        "properties": {
+          "mainClass": {
+            "$ref": "#/components/schemas/VatMainClass"
+          },
+          "subClass": {
+            "$ref": "#/components/schemas/VatSubClass"
+          },
+          "goodsOrServices": {
+            "$ref": "#/components/schemas/GoodsOrServices"
+          },
+          "marginalVatReason": {
+            "$ref": "#/components/schemas/MarginalVatReason"
+          },
+          "vatLevel": {
+            "$ref": "#/components/schemas/VatLevel"
+          },
+          "vatRate": {
+            "type": "number",
+            "format": "decimal"
+          }
+        }
+      },
+      "VatLevel": {
+        "type": "string",
+        "enum": [
+          "HIGH",
+          "MEDIUM",
+          "LOW",
+          "ZERO"
+        ]
+      },
+      "VatMainClass": {
+        "type": "string",
+        "enum": [
+          "SALES",
+          "PURCHASES",
+          "NO_VAT"
+        ]
+      },
+      "VatSubClass": {
+        "type": "string",
+        "enum": [
+          "NORMAL",
+          "MARGINAL",
+          "EU",
+          "BUILDING",
+          "IMPORT"
+        ]
+      },
+      "Versions": {
+        "type": "string",
+        "enum": [
+          "1.0"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com",
+      "description": "API Test endpoint",
+      "variables": {}
+    }
+  ]
+}
