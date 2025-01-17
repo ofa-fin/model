@@ -1,9 +1,7 @@
-import type { BaseDocument } from "./BaseDocument.js";
-
 /**
  * Einvoice address document.
  */
-export interface EinvoiceAddress extends BaseDocument {
+export interface EinvoiceAddress {
 
     /** 
      * Einvoice operator code

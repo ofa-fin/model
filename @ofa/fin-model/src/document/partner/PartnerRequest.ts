@@ -1,4 +1,5 @@
 import type { Address, BankAccount, EinvoiceAddress } from "../index.js";
+import type { PartnerGroup } from "./PartnerGroup.js";
 
 /**
  * Partner request document.
@@ -72,5 +73,14 @@ export interface PartnerRequest {
 
     /** TODO: Do we need array? */
     bankAccounts?: BankAccount[];
+
+    /**
+     * Groups the partner belongs to.
+     * @example [{
+     *   "id": "abc78901-d234-56e7-f890-426614174000",
+     *   "name": "Suppliers"
+     * }]
+     */
+    groups?: PartnerGroup[];
 
 }

@@ -1,10 +1,8 @@
-import type { BaseDocument } from "./BaseDocument.js";
-
 /**
  * Bank account document.
  */
-export interface BankAccount extends BaseDocument {
-  
+export interface BankAccount {
+
     /** IBAN account number. */
     iban: string;
 

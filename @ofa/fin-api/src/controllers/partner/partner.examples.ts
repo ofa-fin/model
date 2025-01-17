@@ -43,6 +43,12 @@ export const partnerWithAllData: Partner = {
             iban: "FI1234567890123456",
             bic: "OKOYFIHH"
         }
+    ],
+    groups: [
+        {
+            id: "abc78901-d234-56e7-f890-426614174000",
+            name: "Suppliers"
+        }
     ]
 };
 

@@ -1,10 +1,8 @@
-import type { BaseDocument } from "./BaseDocument.js";
-
 /**
  * Address document.
  */
-export interface Address extends BaseDocument {
-  
+export interface Address {
+
     /** Street address. */
     street?: string;
 
