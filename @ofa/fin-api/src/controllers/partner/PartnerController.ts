@@ -17,9 +17,9 @@ import {
   Tags
 } from "tsoa";
 import { HttpUtil } from "../../util/HttpCodeReponse.js";
-import { partnerList, partnerWithAllData } from "./partner.examples.js";
 import { emptyResults } from "../common/search.examples.js";
-import { BaseQuery, PaginatedItems } from "../common/search.interfaces.js";
+import { PaginatedItems, SortableQuery } from "../common/search.interfaces.js";
+import { partnerList, partnerWithAllData } from "./partner.examples.js";
 
 /**
  * Management API for partners.
@@ -44,7 +44,7 @@ export class PartnerController extends Controller {
   @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
   @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async listPartners(
-    @Queries() query: BaseQuery
+    @Queries() query: SortableQuery
   ): Promise<PaginatedItems<Partner>> {
     return emptyResults;
   }

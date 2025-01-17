@@ -11,7 +11,12 @@ export interface BaseQuery {
      * @example "0"
      */
     offset?: number;
+}
 
+/**
+ * Sortable query parameters.
+ */
+export interface SortableQuery extends BaseQuery {
     /** Sort field.
      * @example "name"
      */
@@ -26,7 +31,7 @@ export interface BaseQuery {
 /**
  * Date range query parameters.
  */
-export interface DateRangeQuery extends BaseQuery {
+export interface DateRangeQuery extends SortableQuery {
     /** Start date in ISO date format. 
     * @pattern ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
     * @example "2024-01-01"
