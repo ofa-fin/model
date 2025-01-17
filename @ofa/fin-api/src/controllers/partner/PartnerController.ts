@@ -15,12 +15,13 @@ import {
   SuccessResponse,
   Tags
 } from "tsoa";
-import { HttpUtil } from "../util/HttpCodeReponse.js";
+import { HttpUtil } from "../../util/HttpCodeReponse.js";
+import { partnerList, partnerWithAllData } from "./partner.examples.js";
 
 /**
  * Management API for partners.
  */
-@Route("api/v1/partner")
+@Route("api/v1/partners")
 @Tags("Partners")
 export class PartnerController extends Controller {
 
@@ -33,16 +34,7 @@ export class PartnerController extends Controller {
    * @param clientVersion Obligatory client version header
    * @param locale Obligatory locale query parameter
    */
-  @Example<Partner[]>([{
-    id: "123e4567-e89b-12d3-a456-426614174000",
-    code: "PARTNER123",
-    name: "Oy Yritys Ab",
-    businessId: "1234567-8",
-    vatNumber: "FI12345678",
-    email: "contact@yritys.fi",
-    language: "fi",
-    country: "FI"
-  }], "Example list of partners")
+  @Example<Partner[]>(partnerList, "Example list of partners")
   @Example<Partner[]>([], "Empty list of partners")
   @Get()
   @SuccessResponse(200, HttpUtil.CODE_200)
@@ -61,51 +53,7 @@ export class PartnerController extends Controller {
    * @param clientVersion Obligatory client version header
    * @param locale Obligatory locale query parameter
    */
-  @Example<Partner>({
-    id: "123e4567-e89b-12d3-a456-426614174000",
-    createdAt: "2024-12-18T14:32:05Z",
-    updatedAt: "2024-12-18T14:32:05Z",
-    code: "PARTNER123",
-    name: "Oy Yritys Ab",
-    businessId: "1234567-8",
-    vatNumber: "FI12345678",
-    email: "contact@yritys.fi",
-    phone: "+358401234567",
-    homepage: "https://yritys.fi",
-    language: "fi",
-    domicile: "Helsinki",
-    country: "FI",
-    address: {
-      street: "Testikatu 8",
-      postalCode: "00100",
-      city: "Helsinki",
-      countryCode: "FI"
-    },
-    deliveryAddress: {
-      street: "Toimituskatu 3",
-      postalCode: "00120",
-      city: "Helsinki",
-      countryCode: "FI"
-    },
-    invoiceAddress: {
-      street: "Laskutuskatu 5",
-      postalCode: "00150",
-      city: "Helsinki",
-      countryCode: "FI"
-    },
-    einvoiceAddresses: [
-      {
-        operator: "E204503",
-        address: "003712345678"
-      }
-    ],
-    bankAccounts: [
-      {
-        iban: "FI1234567890123456",
-        bic: "OKOYFIHH"
-      }
-    ]
-  }, "Partner with all data")
+  @Example<Partner>(partnerWithAllData, "Partner with all data")
   @Get("{partnerId}")
   @SuccessResponse(200, HttpUtil.CODE_200)
   @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)

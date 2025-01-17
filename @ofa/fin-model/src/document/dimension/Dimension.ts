@@ -1,4 +1,4 @@
-import type { BaseDocument } from "../BaseDocument.js";
+import type { BaseDocument } from "../index.js";
 
 /**
  * Dimension.
@@ -16,7 +16,7 @@ export interface Dimension extends BaseDocument {
      * @example "7382a2ed-2edf-46d1-b5f5-e6b1ec151d38"
      * 
      * Accounting system can use fixed id for some dimensions.
-     * For example, fixed id '@CONST_CENTER' can be used for cost center dimension category, and id '@PROJECT' for project dimension category.
+     * For example, fixed id '@COST_CENTER' can be used for cost center dimension category, and id '@PROJECT' for project dimension category.
      * Dimensions without parent are dimension categories, children are dimension values.
      */
     parent?: string;

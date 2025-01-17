@@ -1,12 +1,13 @@
 import type { DimensionItem } from "./DimensionItem.js";
 
-/** Dimension are used to catecorize entry for const center 'Club activities' 
+/** 
+ * Dimension are used to catecorize entry for cost center 'Club activities' 
  * and then for boys club 60 % and girls club 40 %.
  * Without percentages, percentages are considered to be equal (50 % each).
 */
 const dimensionedForClubs : DimensionItem = {
-    id: '@CONST_CENTER',
-    name: 'Const center',
+    id: '@COST_CENTER',
+    name: 'Cost center',
     values: [
         {
             id: '7382a2ed-2edf-46d1-b5f5-e6b1ec151d38',

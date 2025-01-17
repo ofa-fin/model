@@ -1,7 +1,6 @@
-import type { BaseDocument } from "../BaseDocument.js";
+import type { BaseDocument, DimensionItem } from "../index.js";
 import type { EntryVatInformation } from "./EntryVatInformation.js";
 import type { AccountReference, DocumentReference, PartnerReference } from "./references.js";
-import type { DimensionItem } from "../dimension/DimensionItem.js";
 
 /**
  * Debit or credit.

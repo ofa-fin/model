@@ -1,11 +1,11 @@
+import type { Partner } from "../index.js";
 import type { BaseDocument } from "./BaseDocument.js";
-import type { Partner } from "./Partner.js";
 
 /**
  * Base class for document.
  */
 export interface Document extends BaseDocument {
-  
+
     /** Document type. */
     type: string;
 

@@ -1,4 +1,4 @@
-import type { BaseDocument } from "./BaseDocument.js";
+import type { BaseDocument } from "../index.js";
 import type { PartnerRequest } from "./PartnerRequest.js";
 
 /**

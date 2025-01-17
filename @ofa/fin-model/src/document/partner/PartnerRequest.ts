@@ -1,6 +1,4 @@
-import type { Address } from "./Address.js";
-import type { BankAccount } from "./BankAccount.js";
-import type { EinvoiceAddress } from "./EinvoiceAddress.js";
+import type { Address, BankAccount, EinvoiceAddress } from "../index.js";
 
 /**
  * Partner request document.
