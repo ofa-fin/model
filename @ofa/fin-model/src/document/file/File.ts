@@ -1,4 +1,4 @@
-import type { BaseDocument } from "../BaseDocument.js";
+import type { BaseDocument } from "../common/BaseDocument.js";
 
 /**
  * A file attached to a document.

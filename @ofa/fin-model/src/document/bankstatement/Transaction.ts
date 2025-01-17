@@ -1,9 +1,7 @@
-import type { Document } from "../Document.js";
-import type { DebitOrCredit } from "../entry/Entry.js";
+import type { DebitOrCredit, Entry } from "../entry/Entry.js";
 import type { PartnerReference, DocumentReference } from "../entry/references.js";
 import type { StatementTransaction } from "./StatementTransaction.js";
-import type { Entry } from "../entry/Entry.js";
-import type { BaseDocument } from "../BaseDocument.js";
+import type { BaseDocument } from "../index.js";
 import type { AccountingInstruction } from "../../general/accounting/AccountingInstruction.js";
 import type { File } from "../file/File.js";
 
