@@ -9,6 +9,7 @@ import {
   Path,
   Post,
   Put,
+  Queries,
   Query,
   Response,
   Route,
@@ -17,6 +18,8 @@ import {
 } from "tsoa";
 import { HttpUtil } from "../../util/HttpCodeReponse.js";
 import { partnerList, partnerWithAllData } from "./partner.examples.js";
+import { emptyResults } from "../common/search.examples.js";
+import { BaseQuery, PaginatedItems } from "../common/search.interfaces.js";
 
 /**
  * Management API for partners.
@@ -34,17 +37,16 @@ export class PartnerController extends Controller {
    * @param clientVersion Obligatory client version header
    * @param locale Obligatory locale query parameter
    */
-  @Example<Partner[]>(partnerList, "Example list of partners")
-  @Example<Partner[]>([], "Empty list of partners")
+  @Example<PaginatedItems<Partner>>(partnerList, "Example list of partners")
+  @Example<PaginatedItems<Partner>>(emptyResults, "Empty list of partners")
   @Get()
   @SuccessResponse(200, HttpUtil.CODE_200)
   @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
   @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async listPartners(
-    @Header("client-version") clientVersion?: String,
-    @Query() locale?: String
-  ): Promise<Partner[]> {
-    return [] as any;
+    @Queries() query: BaseQuery
+  ): Promise<PaginatedItems<Partner>> {
+    return emptyResults;
   }
 
   /**

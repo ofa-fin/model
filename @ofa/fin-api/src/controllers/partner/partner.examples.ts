@@ -1,4 +1,5 @@
 import type { Partner } from "@ofa/fin-model";
+import { PaginatedItems } from "../common/search.interfaces.js";
 
 export const partnerWithAllData: Partner = {
     id: "123e4567-e89b-12d3-a456-426614174000",
@@ -52,25 +53,30 @@ export const partnerWithAllData: Partner = {
     ]
 };
 
-export const partnerList: Partner[] = [
-    {
-        id: "123e4567-e89b-12d3-a456-426614174000",
-        code: "PARTNER123",
-        name: "Oy Yritys Ab",
-        businessId: "1234567-8",
-        vatNumber: "FI12345678",
-        email: "contact@yritys.fi",
-        language: "fi",
-        country: "FI"
-    },
-    {
-        id: "456e7890-f12c-34d5-b678-426614174000",
-        code: "PARTNER321",
-        name: "Osakeyhtiö Oy",
-        businessId: "7654321-0",
-        vatNumber: "FI76543210",
-        email: "info@yritys.com",
-        language: "fi",
-        country: "FI"
-    }
-]
+export const partnerList: PaginatedItems<Partner> = {
+    limit: 100,
+    offset: 0,
+    total: 2,
+    items: [
+        {
+            id: "123e4567-e89b-12d3-a456-426614174000",
+            code: "PARTNER123",
+            name: "Oy Yritys Ab",
+            businessId: "1234567-8",
+            vatNumber: "FI12345678",
+            email: "contact@yritys.fi",
+            language: "fi",
+            country: "FI"
+        },
+        {
+            id: "456e7890-f12c-34d5-b678-426614174000",
+            code: "PARTNER321",
+            name: "Osakeyhtiö Oy",
+            businessId: "7654321-0",
+            vatNumber: "FI76543210",
+            email: "info@yritys.com",
+            language: "fi",
+            country: "FI"
+        }
+    ]
+};

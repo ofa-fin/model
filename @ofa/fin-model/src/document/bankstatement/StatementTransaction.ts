@@ -31,6 +31,7 @@ export interface StatementTransactionIdentification {
     */
     servicerReference?: string;
     /** Batch identifier (Pankin antama).
+     * TODO pitäisikö nimetä batchId?
     */
     batchIdentifier?: string;
 }
