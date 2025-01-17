@@ -22,7 +22,7 @@ export interface AccountReference {
 
 /** Some basic information about the document that created the entry. 
  * 
- * Infomation in needef for audit trial (kirjausketju) : Every single entry must be traceable to the original document.
+ * Infomation in needed for audit trial (kirjausketju) : Every single entry must be traceable to the original document.
  */
 export interface DocumentReference {
 
