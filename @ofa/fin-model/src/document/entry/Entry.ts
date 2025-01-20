@@ -89,10 +89,6 @@ export interface Entry extends BaseDocument{
     partner?: PartnerReference;
 
     /** Vat information of the entry.
-     * @example {
-     *   "vatNumber": "FI12345678",
-     *   "vatPercentage": 24
-     * }
      */
     vat?: EntryVatInformation;
 }

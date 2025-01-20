@@ -88,14 +88,10 @@ const exampleStatement = {
                 amount: 43.80,
                 debitOrCredit: DebitOrCredit.CREDIT,
                 description: 'Pankkikorttimaksu, joka tiliöity maksuperusteisesti',
-                accounting: [
-                    {
-                        account: {
-                            number: '1910',
-                            name: 'Pankkitili'
-                        }
-                    }
-                ]
+                account: {
+                    number: '1910',
+                    name: 'Pankkitili'
+                }
             },
             {
                 id: '21c7da5e-24cf-47e1-b375-cd71e780b676',
@@ -103,14 +99,10 @@ const exampleStatement = {
                 amount: 38.42,
                 debitOrCredit: DebitOrCredit.DEBIT,
                 description: 'Pankkikorttimaksu, joka tiliöity maksuperusteisesti',
-                accounting: [
-                    {
-                        account: {
-                            number: '7800',
-                            name: 'Matkaliput'
-                        }
-                    }
-                ],
+                account: {
+                    number: '7800',
+                    name: 'Matkaliput'
+                },
                 vat: {
                     mainClass: VatMainClass.PURCHASES,
                     subClass: VatSubClass.NORMAL,
@@ -125,14 +117,10 @@ const exampleStatement = {
                 amount: 5.38,
                 debitOrCredit: DebitOrCredit.DEBIT,
                 description: 'Pankkikorttimaksu, joka tiliöity maksuperusteisesti',
-                accounting: [
-                    {
-                        account: {
-                            number: '1763',
-                            name: 'Arvonlisäverosaamiset'
-                        }
-                    }
-                ],
+                account: {
+                    number: '1763',
+                    name: 'Arvonlisäverosaamiset'
+                },
                 vat: {
                     mainClass: VatMainClass.PURCHASES,
                     subClass: VatSubClass.NORMAL,
