@@ -4,6 +4,7 @@ import type { StatementTransaction } from "./StatementTransaction.js";
 import type { BaseDocument } from "../index.js";
 import type { AccountingInstruction } from "../../general/accounting/AccountingInstruction.js";
 import type { File } from "../file/File.js";
+import type { StatementReference } from "./StatementReference.js";
 
 export enum TransactionStatus {
     /** Unlinked - kohdentamaton */
@@ -23,7 +24,7 @@ export enum TransactionStatus {
  * One transaction of a bank statement
  * 
  */
-export interface Transaction extends BaseDocument, StatementTransaction {
+export interface TransactionInStatement extends BaseDocument, StatementTransaction {
     
     /** Partner connected to the transaction.
      */
@@ -53,4 +54,10 @@ export interface Transaction extends BaseDocument, StatementTransaction {
     /** Files attached to the transaction.
      */
     files?: File[];
+}
+
+export interface Transaction extends TransactionInStatement {
+    /** Statement reference.
+     */
+    statement?: StatementReference;
 }

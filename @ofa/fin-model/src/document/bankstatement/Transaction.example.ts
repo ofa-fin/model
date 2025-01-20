@@ -47,8 +47,18 @@ const examples: Transaction[] = [
                 url: 'https://example.com/files/b9ed15d0-855f-451b-a154-32b4be4df190',
                 type: 'RECEIPT'
             }
-        ]
-        // Attachment files ??? 
+        ],
+        statement: {
+            account: {
+                iban: 'FI212345678901234567',
+                accounting: {
+                    number: '1910',
+                    name: 'Bank account'
+                }
+            },
+            id: '1c1c6c92-62ad-4d97-a36f-19a89d699a18',
+            visibleIdentifier: 'T-10/2024'
+        }
     },
     // Tilillepano
     {
@@ -73,5 +83,16 @@ const examples: Transaction[] = [
             }
         ],
         status: TransactionStatus.BOOKED,
+        statement: {
+            account: {
+                iban: 'FI212345678901234567',
+                accounting: {
+                    number: '1910',
+                    name: 'Bank account'
+                }
+            },
+            id: '1c1c6c92-62ad-4d97-a36f-19a89d699a18',
+            visibleIdentifier: 'T-10/2024'
+        }   
     }
 ]
