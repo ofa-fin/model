@@ -12,6 +12,9 @@ export interface AccountingInstruction {
     /** Accounting account to be used for the entry. */
     account: AccountReference;
 
+    /** Contra account to be used for the entry. */
+    contraAccount?: AccountReference;
+
     /** Dimensions of the entry. */
     dimensions?: DimensionItem[];
 

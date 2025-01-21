@@ -1,4 +1,4 @@
-import type { VatInformation } from "../../general/VatInformation.js";
+import type { VatInformation } from "../../general/vat/VatInformation.js";
 
 /**
  * Vat entry type.

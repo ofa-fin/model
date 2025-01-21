@@ -9,6 +9,12 @@ export interface BaseDocument {
      * @example "7bd3ee19-af4b-4afd-b08f-de0646471f54"
      */
     id?: string;
+
+    /**
+     * Obligatory document id in external system.
+     * @example "654321"
+     */
+    externalId?: string;
   
     /**
      * Document creation time in ISO 8601 format. Ex. 2024-12-18T14:32:05Z.

@@ -1,6 +1,6 @@
-import type { BaseDocument, DimensionItem } from "../index.js";
+import type { BaseDocument, DimensionItem, PartnerReference } from "../index.js";
 import type { EntryVatInformation } from "./EntryVatInformation.js";
-import type { AccountReference, DocumentReference, PartnerReference } from "./references.js";
+import type { AccountReference, DocumentReference } from "./references.js";
 
 /**
  * Debit or credit.
@@ -15,8 +15,6 @@ export enum DebitOrCredit {
     CREDIT = 'CREDIT'
 }
 
-
-
 /**
  * Accounting entry.
  * 
@@ -25,7 +23,7 @@ export enum DebitOrCredit {
  * This means that the use is usually not creating entries manually, and entries may be in read-only mode.
  * All the reports (balance sheet, income statement, etc.) are based on entries.
  */
-export interface Entry extends BaseDocument{
+export interface Entry extends BaseDocument {
 
     /** Entry date in ISO date format.
      * @pattern ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
@@ -78,7 +76,7 @@ export interface Entry extends BaseDocument{
      *   "visibleIdentifier": "ML-1/2024"
      * }
      */
-    document: DocumentReference; 
+    document: DocumentReference;
 
     /** Partner of the entry.
      * @example {

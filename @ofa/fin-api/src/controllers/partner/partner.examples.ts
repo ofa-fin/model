@@ -1,5 +1,4 @@
-import type { Partner } from "@ofa/fin-model";
-import { PaginatedItems } from "../common/search.interfaces.js";
+import type { PaginatedResult, Partner } from "@ofa/fin-model";
 
 export const partnerWithAllData: Partner = {
     id: "123e4567-e89b-12d3-a456-426614174000",
@@ -53,7 +52,7 @@ export const partnerWithAllData: Partner = {
     ]
 };
 
-export const partnerList: PaginatedItems<Partner> = {
+export const partnerList: PaginatedResult<Partner> = {
     limit: 100,
     offset: 0,
     total: 2,

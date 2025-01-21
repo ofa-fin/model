@@ -1,3 +1,6 @@
+import type { VoucherType } from "../../document/index.js";
+import type { SORT_VOUCHER } from "./sort.enums.js";
+
 /**
  * Base query parameters for search endpoints including pagination.
  */
@@ -14,14 +17,9 @@ export interface BaseQuery {
 }
 
 /**
- * Sortable query parameters.
+ * Orderable query parameters.
  */
-export interface SortableQuery extends BaseQuery {
-    /** Sort field.
-     * @example "name"
-     */
-    sort?: string;
-
+export interface OrderableQuery extends BaseQuery {
     /** Sort order.
      * @example "asc"
      */
@@ -31,7 +29,7 @@ export interface SortableQuery extends BaseQuery {
 /**
  * Date range query parameters.
  */
-export interface DateRangeQuery extends SortableQuery {
+export interface DateRangeQuery extends OrderableQuery {
     /** Start date in ISO date format. 
     * @pattern ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
     * @example "2024-01-01"
@@ -45,25 +43,14 @@ export interface DateRangeQuery extends SortableQuery {
     endDate?: string;
 }
 
-/**
- * Paginated items result.
- */
-export interface PaginatedItems<T> {
-    /** Items in the result set. */
-    items: T[];
-
-    /** Number of items (possible limited) in the result set.
-     * @example "100"
+export interface GetVouchersQuery extends DateRangeQuery {
+    /** Voucher type
+     * @example "SALES_INVOICE"
      */
-    limit: number;
+    voucherType?: VoucherType;
 
-    /** Offset of the result set.
-     * @example "0"
+     /** Sort field.
+     * @example "name"
      */
-    offset: number;
-
-    /** Total number of matching items in the database.
-     * @example "1485"
-     */
-    total: number;
+     sort?: SORT_VOUCHER;
 }

@@ -1,6 +1,6 @@
-import { PaginatedItems } from "./search.interfaces.js";
+import { PaginatedResult } from "@ofa/fin-model";
 
-export const emptyResults: PaginatedItems<any> = {
+export const emptyResults: PaginatedResult<any> = {
     limit: 0,
     offset: 0,
     total: 0,

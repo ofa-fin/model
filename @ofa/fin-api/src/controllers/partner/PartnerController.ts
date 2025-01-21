@@ -1,4 +1,4 @@
-import { Partner, PartnerRequest } from "@ofa/fin-model";
+import { OrderableQuery, PaginatedResult, Partner, PartnerRequest } from "@ofa/fin-model";
 import {
   Body,
   Controller,
@@ -18,7 +18,6 @@ import {
 } from "tsoa";
 import { HttpUtil } from "../../util/HttpCodeReponse.js";
 import { emptyResults } from "../common/search.examples.js";
-import { PaginatedItems, SortableQuery } from "../common/search.interfaces.js";
 import { partnerList, partnerWithAllData } from "./partner.examples.js";
 
 /**
@@ -37,15 +36,16 @@ export class PartnerController extends Controller {
    * @param clientVersion Obligatory client version header
    * @param locale Obligatory locale query parameter
    */
-  @Example<PaginatedItems<Partner>>(partnerList, "Example list of partners")
-  @Example<PaginatedItems<Partner>>(emptyResults, "Empty list of partners")
+  @Example<PaginatedResult<Partner>>(partnerList, "Example list of partners")
+  @Example<PaginatedResult<Partner>>(emptyResults, "Empty list of partners")
   @Get()
   @SuccessResponse(200, HttpUtil.CODE_200)
+  // TODO validation tms error, jos esim. limit liian suuri tai sortattu väärän kentän mukaan
   @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
   @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async listPartners(
-    @Queries() query: SortableQuery
-  ): Promise<PaginatedItems<Partner>> {
+    @Queries() query: OrderableQuery
+  ): Promise<PaginatedResult<Partner>> {
     return emptyResults;
   }
 

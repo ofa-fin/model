@@ -1,10 +1,10 @@
-import type { DebitOrCredit, Entry } from "../entry/Entry.js";
-import type { PartnerReference, DocumentReference } from "../entry/references.js";
-import type { StatementTransaction } from "./StatementTransaction.js";
-import type { BaseDocument } from "../index.js";
 import type { AccountingInstruction } from "../../general/accounting/AccountingInstruction.js";
+import type { Entry } from "../entry/Entry.js";
+import type { DocumentReference } from "../entry/references.js";
 import type { File } from "../file/File.js";
+import type { BaseDocument, PartnerReference } from "../index.js";
 import type { StatementReference } from "./StatementReference.js";
+import type { StatementTransaction } from "./StatementTransaction.js";
 
 export enum TransactionStatus {
     /** Unlinked - kohdentamaton */

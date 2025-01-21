@@ -1,4 +1,4 @@
-import { VatLevel, VatMainClass, VatSubClass } from "../../general/VatInformation.js";
+import { VatLevel, VatMainClass, VatSubClass } from "../../general/vat/VatInformation.js";
 import { DebitOrCredit } from "../entry/Entry.js";
 import type { File } from "../file/File.js";
 import type { Transaction } from "./Transaction.js";

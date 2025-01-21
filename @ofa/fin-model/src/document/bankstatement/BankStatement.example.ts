@@ -1,6 +1,6 @@
 import { DebitOrCredit } from "../entry/Entry.js";
 import { VatEntryType } from "../entry/EntryVatInformation.js";
-import { VatLevel, VatMainClass, VatSubClass } from "../../general/VatInformation.js";
+import { VatLevel, VatMainClass, VatSubClass } from "../../general/vat/VatInformation.js";
 import { TransactionStatus } from "./Transaction.js";
 
 const exampleStatement = {

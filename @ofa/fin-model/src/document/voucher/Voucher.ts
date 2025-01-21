@@ -1,83 +1,46 @@
+import type { Invoice, Partner, VoucherType } from "../index.js";
 import type { BaseDocument } from "../common/BaseDocument.js";
-import type { PartnerReference } from "../entry/references.js";
-import type { VoucherRow } from "./VoucherRow.js";
-import type { VoucherType } from "./VoucherType.js";
+import type { AccountingInstruction } from "../../general/index.js";
 
 /**
- * Accounting voucher (kirjanpidon tosite)
- * 
- * The accounting voucher is a document that contains the details of a financial transaction.
- * Accounting entries are made from accounting vouchers.
+ * Voucher document.
  */
 export interface Voucher extends BaseDocument {
 
-  /** Id in external system */
-  externalId?: string;
+    /** Voucher type. */
+    type: VoucherType;
 
-  /**
-   * Partner of the voucher.
-   * @example {
-   *   "id": "7bd3ee19-af4b-4afd-b08f-de0646471f54",
-   *   "name": "Oy Yritys Ab"
-   * }
-   */
-  partner?: PartnerReference;
+    /**
+     * Document date in ISO date format.
+     * @pattern ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
+     * @example "2025-01-01"
+     */
+    date: string;
 
-  /**
-   * Date of the invoice.
-   * @format date
-  */
-  invoiceDate?: string;
+    /** Voucher title. */
+    title: string;
 
-  /**
-   * Due date of the invoice.
-   * @format date
-   */
-  dueDate?: string;
+    /** Voucher description. */
+    description?: string;
 
-  /**
-   * Pay date of the invoice.
-   * @format date
-   */
-  payDate?: string;
+    /** Voucher status. TODO: string -> object */
+    status?: string;
 
-  /** Reference number of the invoice. */
-  reference?: string;
+    /** Partner for this voucher. */
+    partner: Partner;
 
-  /**
-   * The start date for the period.
-   * @format date
-   */
-  start?: string;
+    /** Accounting instructions for the voucher. */
+    accounting?: AccountingInstruction[];
 
-  /**
-   * The end date for the period.
-   * @format date
-   */
-  end?: string;
+    /** Invoice data. Populated when voucher type is any kind of invoice. */
+    invoice?: Invoice;
+    
+    transactions?: any[];
 
-  /** Numberic identifier */
-  number?: number;
+    entries?: any[];
 
-  /** Account number for the row */
-  account?: string;
+    files?: any[];
 
-  /** Contra account number for the row */
-  contraAccount?: string;
-
-  /** The classification code of the VAT */
-  vatCode?: string;
-
-  /** The VAT percent as 0-100 (e.g. 25.5 for 25.5%) */
-  vatPercent?: number;
-
-  /** Accounting voucher type */
-  type?: VoucherType;
-
-  /** The id of the payment method */
-  paymentMethodId?: string;
-
-  /** Rows in the accounting voucher */
-  rows: VoucherRow[];
+    history?: any[];
 
 }
