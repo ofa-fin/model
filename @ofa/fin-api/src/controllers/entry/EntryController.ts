@@ -27,6 +27,20 @@ interface GetEntriesQuery {
      * @example "7382a2ed-2edf-46d1-b5f5-e6b1ec151d38"
      */
     dimension?: string;
+
+    /**
+     * Show entries for a specific voucher.
+     * 
+     * @example "7382a2ed-2edf-46d1-b5f5-e6b1ec151d38"
+     */
+    voucherid?: string
+
+    /**
+     * Show entries for a specific transaction.
+     * 
+     * @example "7382a2ed-2edf-46d1-b5f5-e6b1ec151d38"
+     */
+    transactionId?: string
 }
 
 @Route("api/v1/entries")

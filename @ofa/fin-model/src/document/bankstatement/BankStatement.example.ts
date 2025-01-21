@@ -8,6 +8,7 @@ const exampleStatement = {
     date: '2025-01-31',
     /** Kirjanpidossa näytettävä tositenumero */
     visibleIdentifier: 'T-10/2024',
+    // Nämä voisivat olla myös metadata-kentässä.
     createdAt: '2025-02-01T12:00:00Z',
     updatedAt: '2025-02-01T12:00:00Z',
     /** Tositteen tyyppi
@@ -26,6 +27,7 @@ const exampleStatement = {
         /** Kaikki rivit on tiliöity */
         accounting: 'ACCOUNTED',
         // Laskuilla lisäksi maksamisen tila
+        // Ostolaskuilla voi olla hyväksynnän tila laskukierrossa
     },    
     title: 'Bank statement for January 2025',
     period: {
@@ -39,100 +41,104 @@ const exampleStatement = {
     },
     // Transactions-osio on vain tiliotteille, joilla on transaktiot ikään kuin alidokumentteina.
     // Muilla tositteilla tiliöintitiedot välitetään accounting-osiossa, joiden (ja contraAccount) perusteella viennit generoidaan.
-    transactions: [    {
-        identification: {
-            servicerReference: '202501155EQEO10251242025-01-15'
-        },
-        creditOrDebit: DebitOrCredit.DEBIT,
-        date: {
-            buying: '2025-01-14',
-            booking: '2025-01-15',
-            transaction: '2025-01-15',
-            value: '2025-01-15',
-        },
-        transactionPartner: {
-            name: 'VR.FI HELSINKI',
-        },
-        amount: 43.80,
-        /** Tiliöintohjeet, joiden perusteella viennit generoidaan */
-        accounting: [
-            {
-                account: {
-                    number: '7800',
-                    name: 'Matkaliput'
-                },
-                vat: {
-                    mainClass: VatMainClass.PURCHASES,
-                    subClass: VatSubClass.NORMAL,
-                    level: VatLevel.MEDIUM,
-                    rate: 14
-                },
-                amount: 43.80,
-                netAmount: 38.42,
-            }
-        ],
-        status: TransactionStatus.BOOKED,
-        files: [
-            {
-                id: 'b9ed15d0-855f-451b-a154-32b4be4df190',
-                fileName: 'kuitti.png',
-                mimetype: 'image/png',
-                url: 'https://example.com/files/b9ed15d0-855f-451b-a154-32b4be4df190',
-                type: 'RECEIPT'
-            }
-        ],
-        entries: [
-            {
-                id: '1c1c6c92-62ad-4d97-a36f-19a89d699a18',
-                date: '2025-01-15',
-                amount: 43.80,
-                debitOrCredit: DebitOrCredit.CREDIT,
-                description: 'Pankkikorttimaksu, joka tiliöity maksuperusteisesti',
-                account: {
-                    number: '1910',
-                    name: 'Pankkitili'
-                }
+    // Vai olisiko rakenteella
+    // Voucher.Statement.Transactions ?
+    statement: {
+        transactions: [{
+            identification: {
+                servicerReference: '202501155EQEO10251242025-01-15'
             },
-            {
-                id: '21c7da5e-24cf-47e1-b375-cd71e780b676',
-                date: '2025-01-15',
-                amount: 38.42,
-                debitOrCredit: DebitOrCredit.DEBIT,
-                description: 'Pankkikorttimaksu, joka tiliöity maksuperusteisesti',
-                account: {
-                    number: '7800',
-                    name: 'Matkaliput'
-                },
-                vat: {
-                    mainClass: VatMainClass.PURCHASES,
-                    subClass: VatSubClass.NORMAL,
-                    level: VatLevel.MEDIUM,
-                    rate: 14,
-                    bookingType: VatEntryType.BASE,
-                }
+            creditOrDebit: DebitOrCredit.DEBIT,
+            date: {
+                buying: '2025-01-14',
+                booking: '2025-01-15',
+                transaction: '2025-01-15',
+                value: '2025-01-15',
             },
-            {
-                id: 'ad48fc23-8517-474b-85e1-368ec7a79eec',
-                date: '2025-01-15',
-                amount: 5.38,
-                debitOrCredit: DebitOrCredit.DEBIT,
-                description: 'Pankkikorttimaksu, joka tiliöity maksuperusteisesti',
-                account: {
-                    number: '1763',
-                    name: 'Arvonlisäverosaamiset'
-                },
-                vat: {
-                    mainClass: VatMainClass.PURCHASES,
-                    subClass: VatSubClass.NORMAL,
-                    level: VatLevel.MEDIUM,
-                    rate: 14,
-                    bookingType: VatEntryType.RETURN,
+            transactionPartner: {
+                name: 'VR.FI HELSINKI',
+            },
+            amount: 43.80,
+            /** Tiliöintohjeet, joiden perusteella viennit generoidaan */
+            accounting: [
+                {
+                    account: {
+                        number: '7800',
+                        name: 'Matkaliput'
+                    },
+                    vat: {
+                        mainClass: VatMainClass.PURCHASES,
+                        subClass: VatSubClass.NORMAL,
+                        level: VatLevel.MEDIUM,
+                        rate: 14
+                    },
+                    amount: 43.80,
+                    netAmount: 38.42,
                 }
-            }
-        ]
-        
-    }
-    ],
+            ],
+            status: TransactionStatus.BOOKED,
+            files: [
+                {
+                    id: 'b9ed15d0-855f-451b-a154-32b4be4df190',
+                    fileName: 'kuitti.png',
+                    mimetype: 'image/png',
+                    url: 'https://example.com/files/b9ed15d0-855f-451b-a154-32b4be4df190',
+                    type: 'RECEIPT'
+                }
+            ],
+            // Entä jos entries ei olisikaan osa GET-pyynnöllä saatavaa vastausta,
+            // vaan kirjanpitoviennit pitäisi hakea erikseen omalla endpointillä (entries) ?
+            entries: [
+                {
+                    id: '1c1c6c92-62ad-4d97-a36f-19a89d699a18',
+                    date: '2025-01-15',
+                    amount: 43.80,
+                    debitOrCredit: DebitOrCredit.CREDIT,
+                    description: 'Pankkikorttimaksu, joka tiliöity maksuperusteisesti',
+                    account: {
+                        number: '1910',
+                        name: 'Pankkitili'
+                    }
+                },
+                {
+                    id: '21c7da5e-24cf-47e1-b375-cd71e780b676',
+                    date: '2025-01-15',
+                    amount: 38.42,
+                    debitOrCredit: DebitOrCredit.DEBIT,
+                    description: 'Pankkikorttimaksu, joka tiliöity maksuperusteisesti',
+                    account: {
+                        number: '7800',
+                        name: 'Matkaliput'
+                    },
+                    vat: {
+                        mainClass: VatMainClass.PURCHASES,
+                        subClass: VatSubClass.NORMAL,
+                        level: VatLevel.MEDIUM,
+                        rate: 14,
+                        bookingType: VatEntryType.BASE,
+                    }
+                },
+                {
+                    id: 'ad48fc23-8517-474b-85e1-368ec7a79eec',
+                    date: '2025-01-15',
+                    amount: 5.38,
+                    debitOrCredit: DebitOrCredit.DEBIT,
+                    description: 'Pankkikorttimaksu, joka tiliöity maksuperusteisesti',
+                    account: {
+                        number: '1763',
+                        name: 'Arvonlisäverosaamiset'
+                    },
+                    vat: {
+                        mainClass: VatMainClass.PURCHASES,
+                        subClass: VatSubClass.NORMAL,
+                        level: VatLevel.MEDIUM,
+                        rate: 14,
+                        bookingType: VatEntryType.RETURN,
+                    }
+                }
+            ]
+        }],
+    },
     files: [
         {
             // Alkuperäiset tilitiedot Enable Banking API:n välityksellä
@@ -153,4 +159,6 @@ const exampleStatement = {
     ],
     // Tiliotteella viennit generoidaan transaktiokohtaisesti
     // Generoidaanko entries myös koko tositteelle (tällöin esim. kaikkien tositteiden tietoja voitaisiin käsitellä yhtenevästi)
+
+    // Tiliotteella voi olla myös saldotieto
 }
