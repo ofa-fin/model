@@ -17,6 +17,11 @@ export interface AccountReference {
      * @example "Bank account"
      */
     name: string;
+
+    /** IBAN of the bank account.
+     * @example "FI21234567890123456789"
+     */
+    iban?: string;
 }
 
 

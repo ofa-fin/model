@@ -46,7 +46,7 @@ export interface Voucher extends BaseDocument {
     status?: any;
 
     /** Partner for this voucher. */
-    partner: Partner;
+    partner?: Partner;
 
     /** Period for the voucher. */
     period?: Period;

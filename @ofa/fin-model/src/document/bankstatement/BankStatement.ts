@@ -17,5 +17,6 @@ export interface BankStatementIdentifier {
 }
 
 export interface BankStatement {
+    identifiers?: BankStatementIdentifier[];
     transactions: Transaction[];
 }
