@@ -16,3 +16,6 @@ export interface BankStatementIdentifier {
     electronicSequenceNumber?: string;
 }
 
+export interface BankStatement {
+    transactions: Transaction[];
+}

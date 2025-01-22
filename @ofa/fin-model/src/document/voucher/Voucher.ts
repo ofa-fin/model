@@ -1,14 +1,20 @@
-import type { Invoice, Partner, VoucherType } from "../index.js";
+import type { AccountReference, File, Invoice, Partner, VoucherType } from "../index.js";
 import type { BaseDocument } from "../common/BaseDocument.js";
-import type { AccountingInstruction } from "../../general/index.js";
+import type { AccountingInstruction, Period } from "../../general/index.js";
+import type { BankStatement } from "../bankstatement/BankStatement.js";
 
 /**
  * Voucher document.
  */
 export interface Voucher extends BaseDocument {
 
-    /** Voucher type. */
-    type: VoucherType;
+    /** Voucher type. 
+     * 
+     *  TODO: String, enum or object ?
+     *  TODO: Should be in BaseDocument ?
+     * 
+    */
+    type: VoucherType | string;
 
     /**
      * Document date in ISO date format.
@@ -17,30 +23,59 @@ export interface Voucher extends BaseDocument {
      */
     date: string;
 
+
+    /** Visible identifier for the voucher. 
+     * 
+    */
+    visibleIdentifier?: string;
+
+    /** Source information of the voucher. 
+     * TODO: Model for source
+     */
+    source?: any;
+
     /** Voucher title. */
     title: string;
 
     /** Voucher description. */
     description?: string;
 
-    /** Voucher status. TODO: string -> object */
-    status?: string;
+    /** Voucher status. 
+     * TODO: Model for status
+     * */
+    status?: any;
 
     /** Partner for this voucher. */
     partner: Partner;
 
+    /** Period for the voucher. */
+    period?: Period;
+
     /** Accounting instructions for the voucher. */
     accounting?: AccountingInstruction[];
+
+    /** Contra account for the voucher. 
+     * TODO: May need own model
+     * 
+     * TODO: Should be contraAccounting and include f.ex. information
+     * the original voucher of credit note etc.
+     * 
+     * TODO: Should be included in AccountingInstruction ?
+    */
+    contraAccount?: AccountReference;
 
     /** Invoice data. Populated when voucher type is any kind of invoice. */
     invoice?: Invoice;
     
-    transactions?: any[];
+    /** Bank statement data. Populated when voucher type is bank statement. */
+    statement?: BankStatement;
 
-    entries?: any[];
-
-    files?: any[];
-
-    history?: any[];
+    /*
+        Some other specific data for other voucher types
+        ...
+    */
+    
+    /** Attached files. */
+    files?: File[];
 
 }
