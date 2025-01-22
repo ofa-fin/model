@@ -4,7 +4,7 @@
 export interface PaymentMethodReference {
 
     /** Payment method id, recommended to be a UUID.
-     * @example "123e4567-e89b-12d3-a456-426614174000"
+     * @example "550e8400-e29b-41d4-a716-446655440000"
      */
     id: string;
 

@@ -5,23 +5,31 @@ import type { SORT_VOUCHER } from "./sort.enums.js";
  * Base query parameters for search endpoints including pagination.
  */
 export interface BaseQuery {
-    /** Limit of the result set.
+    /**
+     * Limit of the result set.
      * @example "100"
      */
     limit?: number;
 
-    /** Offset of the result set.
+    /**
+     * Offset of the result set.
      * @example "0"
      */
     offset?: number;
+
+    /**
+     * Language as ISO 639-1 code.
+     * @example "fi"
+     */
+    language?: String
 }
 
 /**
  * Orderable query parameters.
  */
 export interface OrderableQuery extends BaseQuery {
-    /** Sort order.
-     * @example "asc"
+    /**
+     * Sort order.
      */
     order?: "asc" | "desc";
 }
@@ -30,13 +38,15 @@ export interface OrderableQuery extends BaseQuery {
  * Date range query parameters.
  */
 export interface DateRangeQuery extends OrderableQuery {
-    /** Start date in ISO date format. 
-    * @pattern ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
-    * @example "2024-01-01"
-    */
+    /**
+     * Start date in ISO date format. 
+     * @pattern ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
+     * @example "2024-01-01"
+     */
     startDate?: string;
 
-    /** End date in ISO date format. 
+    /**
+     * End date in ISO date format. 
      * @pattern ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
      * @example "2024-12-31"
      */
@@ -44,13 +54,15 @@ export interface DateRangeQuery extends OrderableQuery {
 }
 
 export interface GetVouchersQuery extends DateRangeQuery {
-    /** Voucher type
+    /**
+     * Voucher type
      * @example "SALES_INVOICE"
      */
     voucherType?: VoucherType;
 
-     /** Sort field.
+    /**
+     * Sort field.
      * @example "name"
      */
-     sort?: SORT_VOUCHER;
+    sort?: SORT_VOUCHER;
 }

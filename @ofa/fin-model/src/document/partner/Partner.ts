@@ -5,7 +5,7 @@ import type { PartnerRequest } from "./PartnerRequest.js";
 export interface PartnerReference {
 
     /** Partner id in the accounting system, recommended to be a UUID.
-     * @example "7bd3ee19-af4b-4afd-b08f-de0646471f54"
+     * @example "123e4567-e89b-12d3-a456-426614174000"
      */
     id: string;
 

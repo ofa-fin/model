@@ -1,10 +1,12 @@
 import { PaginatedResult, VatMainClass, VoucherType, type Voucher } from "@ofa/fin-model";
 
 export const salesInvoices: PaginatedResult<Voucher> = {
-    limit: 100,
-    offset: 0,
-    total: 2,
-    items: [
+    meta: {
+        limit: 100,
+        offset: 0,
+        total: 2
+    },
+    data: [
         {
             id: "inv-2023-001",
             date: "2024-09-15",

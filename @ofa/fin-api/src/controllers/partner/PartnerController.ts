@@ -1,4 +1,4 @@
-import { OrderableQuery, PaginatedResult, Partner, PartnerRequest } from "@ofa/fin-model";
+import { OrderableQuery, PaginatedResult, Partner, PartnerRequest, Result } from "@ofa/fin-model";
 import {
   Body,
   Controller,
@@ -33,8 +33,6 @@ export class PartnerController extends Controller {
 
   /**
    * List all partners.
-   * @param clientVersion Obligatory client version header
-   * @param locale Obligatory locale query parameter
    */
   @Example<PaginatedResult<Partner>>(partnerList, "Example list of partners")
   @Example<PaginatedResult<Partner>>(emptyResults, "Empty list of partners")
@@ -44,18 +42,17 @@ export class PartnerController extends Controller {
   @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
   @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async listPartners(
-    @Queries() query: OrderableQuery
+    @Queries() query: OrderableQuery,
   ): Promise<PaginatedResult<Partner>> {
     return emptyResults;
   }
 
   /**
    * Get partner by id.
-   * @param partnerId The partners's identifier
-   * @param clientVersion Obligatory client version header
-   * @param locale Obligatory locale query parameter
+   * @param partnerId The partners's identifier - example 123e4567-e89b-12d3-a456-426614174000
+   * @param language Obligatory language query parameter as ISO 639-1 code, like fi or en
    */
-  @Example<Partner>(partnerWithAllData, "Partner with all data")
+  @Example<Result<Partner>>(partnerWithAllData, "Partner with all data")
   @Get("{partnerId}")
   @SuccessResponse(200, HttpUtil.CODE_200)
   @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
@@ -63,17 +60,15 @@ export class PartnerController extends Controller {
   @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async getPartner(
     @Path() partnerId: String,
-    @Header("client-version") clientVersion?: String,
-    @Query() locale?: String
-  ): Promise<Partner> {
+    @Query() language?: String
+  ): Promise<Result<Partner>> {
     return {} as any;
   }
 
   /**
    * Create a new partner.
    * @param requestBody Partner data
-   * @param clientVersion Obligatory client version header
-   * @param locale Obligatory locale query parameter
+   * @param language Obligatory language query parameter as ISO 639-1 code, like fi or en
    * @example requestBody {
    *   "code": "PARTNER123",
    *   "name": "Oy Yritys Ab",
@@ -93,9 +88,8 @@ export class PartnerController extends Controller {
   @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async createPartner(
     @Body() requestBody: PartnerRequest,
-    @Header("client-version") clientVersion?: String,
-    @Query() locale?: String
-  ): Promise<Partner> {
+    @Query() language?: String
+  ): Promise<Result<Partner>> {
     return {} as any;
   }
 
@@ -103,8 +97,7 @@ export class PartnerController extends Controller {
    * Update partner by id.
    * @param partnerId The partner's identifier
    * @param requestBody Updated partner data
-   * @param clientVersion Obligatory client version header
-   * @param locale Obligatory locale query parameter
+   * @param language Obligatory language query parameter as ISO 639-1 code, like fi or en
    */
   @Put("{partnerId}")
   @SuccessResponse(200, "Success")
@@ -115,17 +108,14 @@ export class PartnerController extends Controller {
   public async updatePartner(
     @Path() partnerId: String,
     @Body() requestBody: PartnerRequest,
-    @Header("client-version") clientVersion?: String,
-    @Query() locale?: String
-  ): Promise<Partner> {
+    @Query() language?: String
+  ): Promise<Result<Partner>> {
     return {} as any;
   }
 
   /**
    * Delete partner by id.
    * @param partnerId The partner's identifier
-   * @param clientVersion Obligatory client version header
-   * @param locale Obligatory locale query parameter
    */
   @Delete("{partnerId}")
   @SuccessResponse(204, HttpUtil.CODE_204)
@@ -133,9 +123,7 @@ export class PartnerController extends Controller {
   @Response<{ message: NotFoundError }>(404, HttpUtil.CODE_404)
   @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async deletePartner(
-    @Path() partnerId: String,
-    @Header("client-version") clientVersion?: String,
-    @Query() locale?: String
+    @Path() partnerId: String
   ): Promise<void> {
     return;
   }
