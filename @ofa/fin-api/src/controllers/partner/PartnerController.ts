@@ -69,7 +69,7 @@ export class PartnerController extends Controller {
    * Create a new partner.
    * @param requestBody Partner data
    * @param language Obligatory language query parameter as ISO 639-1 code, like fi or en
-   * @example requestBody {
+   * @example partner {
    *   "code": "PARTNER123",
    *   "name": "Oy Yritys Ab",
    *   "businessId": "1234567-8",
@@ -87,7 +87,7 @@ export class PartnerController extends Controller {
   @Response<{ message: UnauthorizedError }>(401, HttpUtil.CODE_401)
   @Response<{ message: InternalServerError }>(500, HttpUtil.CODE_500)
   public async createPartner(
-    @Body() requestBody: PartnerRequest,
+    @Body() partner: PartnerRequest,
     @Query() language?: String
   ): Promise<Result<Partner>> {
     return {} as any;

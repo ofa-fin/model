@@ -3,7 +3,7 @@ import type { PaginatedResult, Partner, Result } from "@ofa/fin-model";
 export const partnerWithAllData: Result<Partner> = {
     meta: {
         id: "123e4567-e89b-12d3-a456-426614174000",
-        queriedAt: "2024-12-25T18:27:03Z",
+        queriedAt: new Date().toISOString(),
         createdAt: "2024-12-18T14:32:05Z",
         updatedAt: "2024-12-18T14:32:05Z",
         version: 1,
@@ -62,6 +62,7 @@ export const partnerWithAllData: Result<Partner> = {
 
 export const partnerList: PaginatedResult<Partner> = {
     meta: {
+        queriedAt: new Date().toISOString(),
         limit: 100,
         offset: 0,
         total: 2

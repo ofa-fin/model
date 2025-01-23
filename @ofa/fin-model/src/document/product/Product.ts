@@ -14,7 +14,7 @@ export interface ProductReference {
     name: string;
 }
 
-/** Product document. */
+/** Product document. // TODO do we need this? */
 export interface Product extends BaseDocument {
 
 }

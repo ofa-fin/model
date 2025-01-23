@@ -3,6 +3,12 @@
  */
 export interface PaginationMeta {
     /**
+     * Query time in ISO 8601 format
+     * @example "2024-12-25T18:27:03Z"
+     */
+    queriedAt: string;
+
+    /**
      * Number of items (possible limited) in the result set.
      * @example "100"
      */
@@ -40,37 +46,37 @@ export interface SingleMeta {
      * Resource identifier
      * @example "123e4567-e89b-12d3-a456-426614174000"
      */
-    id?: string;
+    id: string;
 
     /**
      * Query time in ISO 8601 format.
      * @example "2025-01-12T18:27:03Z"
      */
-    queriedAt?: string;
+    queriedAt: string;
 
     /**
      * Resource creation time in ISO 8601 format.
      * @example "2024-12-18T14:32:05Z"
      */
-    createdAt?: string;
+    createdAt: string;
 
     /**
      * Resource update time in ISO 8601 format.
      * @example "2024-12-18T14:32:05Z"
      */
-    updatedAt?: string;
+    updatedAt: string;
 
     /**
      * Version number of the resource
      * @example "1"
      */
-    version?: number;
+    version: number;
 
     /**
      * Resource type identifier
      * @example "PARTNER"
      */
-    type?: string;
+    type: string;
 
     /**
      * Self link to the resource

@@ -2,7 +2,7 @@ import type { BaseDocument } from "../index.js";
 import type { Product } from "./Product.js";
 
 /**
- * Product group document.
+ * Product group document. // TODO Do we need this?
  */
 export interface ProductGroup extends BaseDocument {
 
