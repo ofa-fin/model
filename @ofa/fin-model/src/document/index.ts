@@ -5,4 +5,6 @@ export * from "./entry/index.js"
 export * from "./file/index.js"
 export * from "./partner/index.js"
 export * from "./voucher/index.js"
+export * from "./account/index.js"
+export * from "./financialyear/index.js"
 
