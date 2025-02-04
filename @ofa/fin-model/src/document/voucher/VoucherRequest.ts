@@ -1,6 +1,6 @@
 import type { AccountingInstruction, Period } from "../../general/index.js";
 import type { BankStatement } from "../bankstatement/BankStatement.js";
-import type { AccountReference, File, Invoice, Partner, VoucherType } from "../index.js";
+import type { AccountReference, File, Invoice, Partner, PartnerReference, VoucherType } from "../index.js";
 
 /**
  * Voucher document.
@@ -23,17 +23,22 @@ export interface VoucherRequest {
     date: string;
 
 
-    /** Visible identifier for the voucher. 
-     * 
-    */
+    /**
+     * Visible identifier for the voucher.
+     * @example "A-2025-1001"
+     */
     visibleIdentifier?: string;
 
-    /** Source information of the voucher. 
+    /**
+     * Source information of the voucher. 
      * TODO: Model for source
      */
     source?: any;
 
-    /** Voucher title. */
+    /**
+     * Voucher title.
+     * @example "1001 / Oy Yritys Ab"
+     */
     title: string;
 
     /** Voucher description. */
@@ -45,7 +50,7 @@ export interface VoucherRequest {
     status?: any;
 
     /** Partner for this voucher. */
-    partner?: Partner;
+    partner?: PartnerReference;
 
     /** Period for the voucher. */
     period?: Period;
@@ -60,7 +65,9 @@ export interface VoucherRequest {
      * the original voucher of credit note etc.
      * 
      * TODO: Should be included in AccountingInstruction ?
-    */
+     * 
+     * TODO: AccountingInstruction already contains contraAccount so can this be removed?
+     */
     contraAccount?: AccountReference;
 
     /** Invoice data. Populated when voucher type is any kind of invoice. */

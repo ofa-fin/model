@@ -7,7 +7,7 @@ export interface File extends BaseDocument {
     /** File name.
      * @example "invoice.pdf"
      */
-    fileName: string;
+    name: string;
 
     /** File mime type.
      * @example "application/pdf"

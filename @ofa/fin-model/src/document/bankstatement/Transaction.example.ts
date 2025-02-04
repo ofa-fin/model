@@ -42,7 +42,7 @@ const examples: Transaction[] = [
         files: [
             {
                 id: 'b9ed15d0-855f-451b-a154-32b4be4df190',
-                fileName: 'kuitti.png',
+                name: 'kuitti.png',
                 mimetype: 'image/png',
                 url: 'https://example.com/files/b9ed15d0-855f-451b-a154-32b4be4df190',
                 type: 'RECEIPT'

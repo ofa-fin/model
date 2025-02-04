@@ -2,6 +2,7 @@ import { PaginatedResult, Result, VatMainClass, VoucherType, type Voucher } from
 
 const salesInvoice1: Voucher = {
     id: "8f47aa9c-21e3-4b8b-9f1d-a504f5871f3b",
+    type: VoucherType.SALES_INVOICE,
     date: "2024-09-15",
     title: "1001 / Oy Yritys Ab",
     description: "Sales invoice 1001 for Oy Yritys Ab",
@@ -31,12 +32,12 @@ const salesInvoice1: Voucher = {
                 }
             }
         ]
-    },
-    type: VoucherType.SALES_INVOICE
+    }
 };
 
 const salesInvoice2: Voucher = {
     id: "123e4567-e89b-12d3-a456-426614174001",
+    type: VoucherType.SALES_INVOICE,
     date: "2024-09-16",
     title: "1002 / Osakeyhtiö Oy",
     description: "Sales invoice 1002 for Osakeyhtiö Oy",
@@ -66,8 +67,7 @@ const salesInvoice2: Voucher = {
                 }
             }
         ]
-    },
-    type: VoucherType.SALES_INVOICE
+    }
 };
 
 export const salesInvoiceResult: Result<Voucher> = {

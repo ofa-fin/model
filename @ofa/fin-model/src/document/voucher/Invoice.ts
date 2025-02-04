@@ -31,6 +31,7 @@ export interface Invoice {
    * Reference number of the invoice.
    * @minLength 3
    * @maxLength 25
+   * @example "10016"
    */
   reference?: string;
 

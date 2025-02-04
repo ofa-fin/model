@@ -1,5 +1,4 @@
 import { DebitOrCredit } from "../entry/Entry.js";
-import { VatEntryType } from "../entry/EntryVatInformation.js";
 import { VatLevel, VatMainClass, VatSubClass } from "../../general/vat/VatInformation.js";
 import { TransactionStatus } from "./Transaction.js";
 import type { Voucher } from "../voucher/Voucher.js";
@@ -9,9 +8,6 @@ export const exampleStatement : Voucher  = {
     date: '2025-01-31',
     /** Kirjanpidossa näytettävä tositenumero */
     visibleIdentifier: 'T-10/2024',
-    // Nämä voisivat olla myös metadata-kentässä.
-    createdAt: '2025-02-01T12:00:00Z',
-    updatedAt: '2025-02-01T12:00:00Z',
     /** Tositteen tyyppi
      * 
      * Pitäisikö tässä mieluummin käyttää rakenteellisempaa muotoa?
@@ -81,7 +77,7 @@ export const exampleStatement : Voucher  = {
             files: [
                 {
                     id: 'b9ed15d0-855f-451b-a154-32b4be4df190',
-                    fileName: 'kuitti.png',
+                    name: 'kuitti.png',
                     mimetype: 'image/png',
                     url: 'https://example.com/files/b9ed15d0-855f-451b-a154-32b4be4df190',
                     type: 'RECEIPT'
@@ -93,7 +89,7 @@ export const exampleStatement : Voucher  = {
         {
             // Alkuperäiset tilitiedot Enable Banking API:n välityksellä
             id: 'b9ed15d0-855f-451b-a154-32b4be4df190',
-            fileName: 'transactions.json',
+            name: 'transactions.json',
             mimetype: 'application/json',
             url: 'https://example.com/files/b9ed15d0-855f-451b-a154-32b4be4df190',
             type: 'ORIGINAL/ENABLE_BANKING_API'
@@ -101,7 +97,7 @@ export const exampleStatement : Voucher  = {
         {
             // Tiedoista generoitu pdf-tiedosto
             id: '19d53113-77a9-4763-8e1e-52968183f5ef',
-            fileName: 'transactions.pdf',
+            name: 'transactions.pdf',
             mimetype: 'application/pdf',
             url: 'https://example.com/files/19d53113-77a9-4763-8e1e-52968183f5ef',
             type: 'GENERATED/BANK_STATEMENT_PREVIEW'

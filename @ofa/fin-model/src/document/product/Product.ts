@@ -1,5 +1,3 @@
-import type { BaseDocument } from "../index.js";
-
 /** Basic information about the referenced product. */
 export interface ProductReference {
 
@@ -12,9 +10,4 @@ export interface ProductReference {
      * @example "Office chair, black leather"
      */
     name: string;
-}
-
-/** Product document. // TODO do we need this? */
-export interface Product extends BaseDocument {
-
 }
